@@ -68,25 +68,5 @@ class User_model extends CI_Model
 
     public function isNotLogin(){
         return $this->session->userdata('user_logged') === null;
-    } 
-
-    public function get($id)
-    {
-        $this->db->from('users');
-        if($id != null){
-            $this->db->where('user_id', $id);
-        }
-        $query = $this->db->get();
-        return $query;
-    }   
-
-    public function getb($id)
-    {
-        $this->db->from('biodata');
-        if($id != null){
-            $this->db->where('user_id', $id);
-        }
-        $query = $this->db->get();
-        return $query;
     }  
 }
