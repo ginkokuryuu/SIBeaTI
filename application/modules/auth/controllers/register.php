@@ -8,7 +8,14 @@ class register extends CI_Controller {
 		if($this->session->has_userdata('username')){
 			redirect(site_url('auth/test'));
 		}		
-		$this->template->load('template', 'register/index', "Register");
+		$this->template->load('template', 'register/index', "Register Mahasiswa");
+	}
+
+	public function admin(){
+		if($this->session->has_userdata('username')){
+			redirect(site_url('auth/test'));
+		}		
+		$this->template->load('template', 'register/admin', "Register Admin");
 	}
 
 	public function regis(){
