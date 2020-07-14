@@ -6,7 +6,7 @@ class defpage extends CI_Controller {
 	public function index()
 	{
 		if($this->session->has_userdata('username')){
-			redirect(site_url('auth/test'));
+			redirect(site_url('dashboard'));
 		}		
 		$this->template->load('template', 'login/index', "Login Admin");
 	}
@@ -20,7 +20,7 @@ class defpage extends CI_Controller {
 			if($param['status']){
 				//login berhasil
 				$this->session->set_userdata($param);
-				redirect(site_url('auth/test'));
+				redirect(site_url('dashboard'));
 			}
 			else{
 				//login gagal

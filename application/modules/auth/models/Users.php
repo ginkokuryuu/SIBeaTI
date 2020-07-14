@@ -73,4 +73,20 @@ class Users extends CI_Model{
     public function isNotLogin(){
         return $this->session->userdata('user_logged') === null;
     }
+
+    public function changePassword($data){
+        $this->db->where('username', $data["username"]);
+        $user = $this->db->get($this->_table)->row();
+
+        $isPasswordTrue = password_verify($data["old_password"], $user->password);
+        if($isPasswordTrue){
+            $this->password = password_hash($data["password"], PASSWORD_DEFAULT);
+            $this->db->where('user_id', $user->user_id);
+            $this->db->set('password', $this->password);
+            return $this->db->update('users');
+        }
+        else{
+            return 0;
+        }
+    }
 }
