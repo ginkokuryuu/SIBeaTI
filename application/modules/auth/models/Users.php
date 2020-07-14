@@ -31,13 +31,12 @@ class Users extends CI_Model{
         return $this->db->get_where($this->_table, ["user_id" => $id])->row();
     }
 
-    public function save()
+    public function save($data)
     {
-        $post = $this->input->post();
-        $this->username = $post["username"];
-        $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
-        $this->role = $post["role"] ?? "customer";
-        $this->db->insert($this->_table, $this);
+        $this->username = $data["username"];
+        $this->password = password_hash($data["password"], PASSWORD_DEFAULT);
+        $this->role = $data["role"];
+        return $this->db->insert($this->_table, $this);
     }
 
     public function update()
@@ -57,6 +56,13 @@ class Users extends CI_Model{
 
         if($user){
             $isPasswordTrue = password_verify($data["password"], $user->password);
+
+            if($isPasswordTrue){
+                $this->db->where('user_id', $user->user_id);
+                $this->db->set('last_login', 'DATE_ADD(NOW(), INTERVAL 0 MINUTE)', FALSE);
+                $this->db->update('users');
+            }
+
             $param['status'] = $isPasswordTrue;
             $param['username'] = $user->username;
             $param['role'] = $user->role;

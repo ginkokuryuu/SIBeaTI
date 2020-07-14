@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" name="login" class="btn btn-primary w-100" value="Sign In" />
-                    <p>Silakan <a href="<?php echo site_url('register') ?>">register</a> jika belum punya akun.</p>
+                    <p>Silakan <a href="<?php echo site_url('auth/register') ?>">register</a> jika belum punya akun.</p>
                 </div>
 
             </form>
