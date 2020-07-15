@@ -66,6 +66,7 @@ class Users extends CI_Model{
             $param['status'] = $isPasswordTrue;
             $param['username'] = $user->username;
             $param['role'] = $user->role;
+            $param['user_id'] = $user->user_id;
 		}
 		return $param;
     }
