@@ -1,3 +1,2 @@
-﻿kolom 1,kolom 2,kolom 3
-a,b,c
-d,e,f
+﻿No,Tanggal,Deskripsi,Debit,Kredit,Periode
+1,12/31/2020,"Format HARUS seperti ini : tanggal (2020-12-31), debit dan kredit (tanpa titik koma langsung 200000, kalau kosong diisi 0), periode (202012)",0,200000,202012

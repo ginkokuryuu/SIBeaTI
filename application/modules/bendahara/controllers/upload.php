@@ -44,6 +44,18 @@ class upload extends CI_Controller {
         if($file_selected){
             if ( $this->upload->do_upload("userfile"))
             {
+                $this->load->library('csvreader');
+
+                $csv = $this->csvreader->parse_csv(FCPATH . 'public/uploads/contohFormat.csv');
+
+                $keys = $csv['keys'];
+                $datas = $csv['data'];
+
+                $this->load->model('temp_transaksi');
+                foreach($datas as $data){
+                    $this->temp_transaksi->create($data);
+                }
+
                 echo "<script>
                     alert('upload berhasil');
                     window.location='".site_url('bendahara/edit/editAwal')."';

@@ -24,15 +24,16 @@ class edit extends CI_Controller {
     }
     
     public function editAwal(){
-        $this->load->library('CSVReader');
+		$this->load->model('temp_transaksi');
 
-        $csv = $this->csvreader->parse_csv(FCPATH . 'public/uploads/contohFormat.csv');
+		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori');
+		$datas = $this->temp_transaksi->getAll();
 
-        $keys = $csv['keys'];
-        $data = $csv['data'];
+		$data = array(
+			'keys' => $keys,
+			'datas' => $datas
+		);
 
-        var_dump($data);
-
-        // $this->template->load("dashboard/template", "edit/editAwal", "Edit Data", $data);
+        $this->template->load("dashboard/template", "edit/editAwal", "Edit Data", $data);
     }
 }
