@@ -24,16 +24,57 @@ class edit extends CI_Controller {
     }
     
     public function editAwal(){
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+		
 		$this->load->model('temp_transaksi');
 
 		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori');
 		$datas = $this->temp_transaksi->getAll();
 
+		$akuns = $this->temp_transaksi->getAkun();
+		$kategoris = $this->temp_transaksi->getKategori();
+		$jenis_trans = $this->temp_transaksi->getJenisTrans();
+
 		$data = array(
 			'keys' => $keys,
-			'datas' => $datas
+			'datas' => $datas,
+			'akuns' => $akuns,
+			'kategoris' => $kategoris,
+			'jenis_trans' => $jenis_trans
 		);
 
         $this->template->load("dashboard/template", "edit/editAwal", "Edit Data", $data);
-    }
+	}
+	
+	public function save(){
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		$this->load->model('temp_transaksi');
+
+        $data = $this->input->post(null, TRUE);
+
+		if(isset($data['id'])){
+			$result = $this->temp_transaksi->save($data);
+			if($result != 0){
+                redirect(site_url('bendahara/edit/editAwal'));
+			}
+            else{
+                //gagal
+				echo "<script>
+				alert('Maaf, edit gagal');
+				window.location='".site_url('bendahara/edit/editAwal')."';
+				</script>";
+            }
+		}
+	}
 }
