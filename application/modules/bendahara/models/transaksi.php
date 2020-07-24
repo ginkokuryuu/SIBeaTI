@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Temp_transaksi extends CI_Model
+class Transaksi extends CI_Model
 {
-    private $_table = "temp_transaksi";
+    private $_table = "transaksi";
 
     public $id;
     public $deskripsi;
@@ -17,12 +17,11 @@ class Temp_transaksi extends CI_Model
 
     public function getAll()
     {
-        $this->db->select('temp_transaksi.*, jenis_transaksi.nama as jenis_transaksi, kategori.nama as kategori, akun.nama as akun');
+        $this->db->select('transaksi.*, jenis_transaksi.nama as jenis_transaksi, kategori.nama as kategori, akun.nama as akun');
         $this->db->from($this->_table);
         $this->db->join('jenis_transaksi', 'jenis_transaksi.id = id_jenistransaksi', 'inner');
         $this->db->join('kategori', 'kategori.id = id_kategori', 'inner');
         $this->db->join('akun', 'akun.id = id_akun', 'inner');
-        $this->db->order_by('tanggal', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -86,26 +85,6 @@ class Temp_transaksi extends CI_Model
         $this->id_akun = $data['akun'];
 
         return $this->db->update($this->_table, $this,array('id' => $data['id']));
-    }
-
-    public function split($data){
-        $this->deskripsi = $data['deskripsi'];
-        $this->debit = $data['debit'];
-        $this->kredit = $data['kredit'];
-        $this->id_kategori = $data['kategori'];
-        $this->id_akun = $data['akun'];
-        $this->periode = $data['periode'];
-        $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
-
-        $this->saldo = $this->debit - $this->kredit;
-        if($this->saldo >=0){
-            $this->id_jenistransaksi = 1;
-        }
-        else{
-            $this->id_jenistransaksi = 2;
-        }
-
-        $this->db->insert($this->_table, $this);
     }
 
     public function deleteAll(){
