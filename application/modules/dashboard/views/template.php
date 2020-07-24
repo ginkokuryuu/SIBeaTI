@@ -18,6 +18,9 @@
 
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url('css/sb-admin.css') ?>" rel="stylesheet">
+	
+	<!-- jQuery -->
+	<script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>
 </head>
 
 <body id="page-top">

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class edit extends CI_Controller {
+class Edit extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -30,6 +30,8 @@ class edit extends CI_Controller {
 				window.location='".site_url('dashboard')."';
 				</script>";
 		}
+
+		$this->session->set_userdata('prev_url', current_url());
 		
 		$this->load->model('temp_transaksi');
 
@@ -59,22 +61,139 @@ class edit extends CI_Controller {
 				</script>";
 		}
 
-		$this->load->model('temp_transaksi');
+		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
+			$this->load->model('temp_transaksi', 'transaksi');
+		}
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit/')){
+			$this->load->model('transaksi');
+		}
+		else{
+			echo "<script>
+				alert('Mohon akses dari halaman yang benar');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
 
         $data = $this->input->post(null, TRUE);
 
 		if(isset($data['id'])){
-			$result = $this->temp_transaksi->save($data);
+			$result = $this->transaksi->save($data);
 			if($result != 0){
-                redirect(site_url('bendahara/edit/editAwal'));
+                redirect($this->session->userdata('prev_url'));
 			}
             else{
                 //gagal
 				echo "<script>
 				alert('Maaf, edit gagal');
-				window.location='".site_url('bendahara/edit/editAwal')."';
+				window.location='" . $this->session->userdata('prev_url') . "';
 				</script>";
             }
+		}
+	}
+
+	public function delete($data){
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
+			$this->load->model('temp_transaksi', 'transaksi');
+		}
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit/')){
+			$this->load->model('transaksi');
+		}
+		else{
+			echo "<script>
+				alert('Mohon akses dari halaman yang benar');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		if($data != NULL){
+			$result = $this->transaksi->delete($data);
+			if($result != 0){
+                redirect($this->session->userdata('prev_url'));
+			}
+            else{
+                //gagal
+				echo "<script>
+				alert('Maaf, hapus gagal');
+				window.location='".$this->session->userdata('prev_url')."';
+				</script>";
+            }
+		}
+	}
+
+	public function pecah(){
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
+			$this->load->model('temp_transaksi', 'transaksi');
+		}
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit/')){
+			$this->load->model('transaksi');
+		}
+		else{
+			echo "<script>
+				alert('Mohon akses dari halaman yang benar');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+		
+		$data = $this->input->post(null, TRUE);
+		
+		if(isset($data['pc-id'])){
+			// cek debit kredit apakah valid
+			$totalDebit = '0';
+			$totalKredit = '0';
+
+			foreach($data['pc-debit'] as $debit){
+				$totalDebit = $totalDebit + $debit;
+			}
+			foreach($data['pc-kredit'] as $kredit){
+				$totalKredit = $totalKredit + $kredit;
+			}
+
+			if($totalDebit != $data['pc-debit_awal']){
+				echo "<script>
+				alert('Maaf, data total debit tidak sesuai data awal');
+				window.location='" . $this->session->userdata('prev_url') . "';
+				</script>";
+			}
+			else if($totalKredit != $data['pc-kredit_awal']){
+				echo "<script>
+				alert('Maaf, data total kredit tidak sesuai data awal');
+				window.location='" . $this->session->userdata('prev_url') . "';
+				</script>";
+			}
+
+			$count = 0;
+			// simpan
+			foreach($data['pc-deskripsi'] as $nothing){
+				$param = array(
+					'deskripsi' => $data['pc-deskripsi'][$count],
+					'debit' => $data['pc-debit'][$count],
+					'kredit' => $data['pc-kredit'][$count],
+					'kategori' => $data['pc-kategori'],
+					'akun' => $data['pc-akun'],
+					'periode' => $data['pc-periode'],
+					'tanggal' => $data['pc-tanggal']
+				);
+				
+				$this->transaksi->split($param);
+				$count++;
+			}
+
+			$this->transaksi->delete($data['pc-id']);
+			redirect($this->session->userdata('prev_url'));
 		}
 	}
 }
