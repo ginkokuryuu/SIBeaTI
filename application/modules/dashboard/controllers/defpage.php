@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class hello extends CI_Controller {
+class Defpage extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,10 +20,18 @@ class hello extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('hello/index');
-	}
+		if($this->session->has_userdata('username')){
+			$role = $this->session->userdata('role');
+			$data = array();
+			if($role == 'mahasiswa'){
+				$berita = $this->load->model('Berita_model', 'berita');
+				$data['berita'] = $this->berita->getAll();
+			}
 
-	public function world(){
-		$this->load->view('hello/world');
+			$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
+		}
+		else{
+			redirect(site_url('auth'));
+		}
 	}
 }
