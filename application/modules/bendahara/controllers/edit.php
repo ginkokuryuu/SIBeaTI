@@ -20,8 +20,34 @@ class Edit extends CI_Controller {
 	 */
 	public function index()
 	{
-		
-    }
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		$this->session->set_userdata('prev_url', current_url());
+
+		$this->load->model('transaksi');
+
+		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori');
+		$datas = $this->transaksi->getAll();
+
+		$akuns = $this->transaksi->getAkun();
+		$kategoris = $this->transaksi->getKategori();
+		$jenis_trans = $this->transaksi->getJenisTrans();
+
+		$data = array(
+			'keys' => $keys,
+			'datas' => $datas,
+			'akuns' => $akuns,
+			'kategoris' => $kategoris,
+			'jenis_trans' => $jenis_trans
+		);
+
+        $this->template->load("dashboard/template", "edit/edit", "Edit Data", $data);
+	}
     
     public function editAwal(){
 		if($this->session->userdata('role') != "bendahara"){
@@ -64,7 +90,7 @@ class Edit extends CI_Controller {
 		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
 			$this->load->model('temp_transaksi', 'transaksi');
 		}
-		else if($this->session->userdata('prev_url') == site_url('bendahara/edit/')){
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit')){
 			$this->load->model('transaksi');
 		}
 		else{
@@ -102,7 +128,7 @@ class Edit extends CI_Controller {
 		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
 			$this->load->model('temp_transaksi', 'transaksi');
 		}
-		else if($this->session->userdata('prev_url') == site_url('bendahara/edit/')){
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit')){
 			$this->load->model('transaksi');
 		}
 		else{
@@ -138,7 +164,7 @@ class Edit extends CI_Controller {
 		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
 			$this->load->model('temp_transaksi', 'transaksi');
 		}
-		else if($this->session->userdata('prev_url') == site_url('bendahara/edit/')){
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit')){
 			$this->load->model('transaksi');
 		}
 		else{
@@ -195,5 +221,97 @@ class Edit extends CI_Controller {
 			$this->transaksi->delete($data['pc-id']);
 			redirect($this->session->userdata('prev_url'));
 		}
+	}
+
+	public function transfer(){
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
+			$this->load->model('temp_transaksi', 'transaksi');
+		}
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit')){
+			$this->load->model('transaksi');
+		}
+		else{
+			echo "<script>
+				alert('Mohon akses dari halaman yang benar');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+		
+		$data = $this->input->post(null, TRUE);
+		if(isset($data['tf-id'])){
+			$param = array(
+				'deskripsi' => $data['tf-deskripsi'],
+				'debit' => $data['tf-debit'],
+				'kredit' => $data['tf-kredit'],
+				'kategori' => $data['tf-kategori'],
+				'akun' => $data['tf-akun'],
+				'akun_tujuan' => $data['tf-akun_tujuan'],
+				'periode' => $data['tf-periode'],
+				'tanggal' => $data['tf-tanggal']
+			);
+			
+			$this->transaksi->createBalance($param);
+			$this->transaksi->transfer($param);
+
+			redirect($this->session->userdata('prev_url'));
+		}
+	}
+
+	public function saveDatabase(){
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		$this->load->model('temp_transaksi');
+		$this->load->model('transaksi');
+
+		$dataToTransfer = $this->temp_transaksi->getRawNoId();
+
+		foreach($dataToTransfer as $data){
+			$this->transaksi->saveFromTemp($data);
+		}
+
+		$this->temp_transaksi->deleteAll();
+
+		echo "<script>
+			alert('Berhasil menyimpan ke database');
+			window.location='".site_url('dashboard')."';
+			</script>";
+	}
+
+	public function deleteAll(){
+		if($this->session->userdata('role') != "bendahara"){
+            echo "<script>
+				alert('Maaf anda bukan bendahara');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		if($this->session->userdata('prev_url') == site_url('bendahara/edit/editAwal')){
+			$this->load->model('temp_transaksi', 'transaksi');
+		}
+		else if($this->session->userdata('prev_url') == site_url('bendahara/edit')){
+			$this->load->model('transaksi');
+		}
+		else{
+			echo "<script>
+				alert('Mohon akses dari halaman yang benar');
+				window.location='".site_url('dashboard')."';
+				</script>";
+		}
+
+		$this->transaksi->deleteAll();
+
+		redirect(site_url('bendahara/upload'));
 	}
 }

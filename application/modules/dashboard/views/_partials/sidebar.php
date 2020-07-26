@@ -20,10 +20,15 @@
     </li>
 
     <?php if($this->session->userdata("role") == "bendahara") : ?>
-        <li class="nav-item <?php echo $this->uri->segment(2) == 'diri' ? 'active': '' ?> <?php echo $this->uri->segment(2) == 'periode' ? 'active': '' ?> <?php echo $this->uri->segment(2) == 'ortu' ? 'active': '' ?> <?php echo $this->uri->segment(2) == 'rumah' ? 'active': '' ?> <?php echo $this->uri->segment(2) == 'cerita' ? 'active': '' ?>">
+        <li class="nav-item <?php echo $this->uri->segment(2) == 'upload' ? 'active': '' ?>">
             <a class="nav-link" href="<?php echo site_url('bendahara/upload') ?>">
                 <i class="fas fa-fw fa-edit"></i>
                 <span>Upload mutasi</span></a>
+        </li>
+        <li class="nav-item <?php echo $this->uri->segment(2) == 'edit' ? 'active': '' ?>">
+            <a class="nav-link" href="<?php echo site_url('bendahara/edit') ?>">
+                <i class="fas fa-fw fa-edit"></i>
+                <span>Edit Transaksi</span></a>
         </li>
     <?php endif; ?>
 </ul>

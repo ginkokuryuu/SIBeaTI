@@ -22,8 +22,24 @@ class Transaksi extends CI_Model
         $this->db->join('jenis_transaksi', 'jenis_transaksi.id = id_jenistransaksi', 'inner');
         $this->db->join('kategori', 'kategori.id = id_kategori', 'inner');
         $this->db->join('akun', 'akun.id = id_akun', 'inner');
+        $this->db->order_by('akun', 'ASC');
+        $this->db->order_by('tanggal', 'DESC');
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function saveFromTemp($data){
+        $this->deskripsi = $data->deskripsi;
+        $this->debit = $data->debit;
+        $this->kredit = $data->kredit;
+        $this->saldo = $data->saldo;
+        $this->periode = $data->periode;
+        $this->tanggal = date("Y-m-d", strtotime($data->tanggal));
+        $this->id_jenistransaksi = $data->id_jenistransaksi;
+        $this->id_kategori = $data->id_kategori;
+        $this->id_akun = $data->id_akun;
+
+        $this->db->insert($this->_table, $this);
     }
     
     public function getById($id)
@@ -85,6 +101,66 @@ class Transaksi extends CI_Model
         $this->id_akun = $data['akun'];
 
         return $this->db->update($this->_table, $this,array('id' => $data['id']));
+    }
+
+    public function split($data){
+        $this->deskripsi = $data['deskripsi'];
+        $this->debit = $data['debit'];
+        $this->kredit = $data['kredit'];
+        $this->id_kategori = $data['kategori'];
+        $this->id_akun = $data['akun'];
+        $this->periode = $data['periode'];
+        $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+
+        $this->saldo = $this->debit - $this->kredit;
+        if($this->saldo >=0){
+            $this->id_jenistransaksi = 1;
+        }
+        else{
+            $this->id_jenistransaksi = 2;
+        }
+
+        $this->db->insert($this->_table, $this);
+    }
+
+    public function createBalance($data){
+        $this->deskripsi = 'Penyeimbang akun untuk transfer';
+        $this->debit = $data['kredit'];
+        $this->kredit = $data['debit'];
+        $this->id_kategori = $data['kategori'];
+        $this->id_akun = $data['akun'];
+        $this->periode = $data['periode'];
+        $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+
+        $this->saldo = $this->debit - $this->kredit;
+        if($this->saldo >=0){
+            $this->id_jenistransaksi = 1;
+        }
+        else{
+            $this->id_jenistransaksi = 2;
+        }
+
+        $this->db->insert($this->_table, $this);
+    }
+
+    public function transfer($data){
+        $this->deskripsi = $data['deskripsi'];
+        $this->debit = $data['debit'];
+        $this->kredit = $data['kredit'];
+        $this->id_kategori = $data['kategori'];
+        $this->id_akun = $data['akun_tujuan'];
+        $this->periode = $data['periode'];
+        $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+
+        $this->saldo = $this->debit - $this->kredit;
+        if($this->saldo >=0){
+            $this->id_jenistransaksi = 1;
+        }
+        else{
+            $this->id_jenistransaksi = 2;
+        }
+
+        $this->db->insert($this->_table, $this);
     }
 
     public function deleteAll(){

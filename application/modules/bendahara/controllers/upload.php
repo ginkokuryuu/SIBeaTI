@@ -26,7 +26,27 @@ class Upload extends CI_Controller {
 				window.location='".site_url('dashboard')."';
 				</script>";
         }
-		$this->template->load("dashboard/template", "upload/index", "Upload File Mutasi");
+
+        $this->load->model('temp_transaksi');
+
+        $data = $this->temp_transaksi->getAll();
+
+        $count = 0;
+
+        foreach($data as $d){
+            $count++;
+        }
+
+        if($count > 0){
+            echo "<script>
+                alert('anda memiliki data yang belum disimpan');
+                window.location='".site_url('bendahara/edit/editAwal')."';
+                </script>";
+        }
+        else{
+            $this->template->load("dashboard/template", "upload/index", "Upload File Mutasi");
+        }
+
     }
     
     public function uploadAction(){
@@ -46,7 +66,7 @@ class Upload extends CI_Controller {
             {
                 $this->load->library('csvreader');
 
-                $csv = $this->csvreader->parse_csv(FCPATH . 'public/uploads/contohFormat.csv');
+                $csv = $this->csvreader->parse_csv(FCPATH . 'public/uploads/UploadMutasi.csv');
 
                 $keys = $csv['keys'];
                 $datas = $csv['data'];
@@ -55,6 +75,8 @@ class Upload extends CI_Controller {
                 foreach($datas as $data){
                     $this->temp_transaksi->create($data);
                 }
+
+                unlink(FCPATH . 'public/uploads/UploadMutasi.csv');
 
                 echo "<script>
                     alert('upload berhasil');
@@ -78,9 +100,9 @@ class Upload extends CI_Controller {
     }
 
     public function downloadFormat(){
-        $fileLocation = base_url("public/files/contohFormat.csv");
+        $fileLocation = base_url("public/files/UploadMutasi.csv");
         $file = file_get_contents($fileLocation);
 
-        force_download("contohFormat.csv", $file);
+        force_download("UploadMutasi.csv", $file);
     }
 }
