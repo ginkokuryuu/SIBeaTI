@@ -68,13 +68,54 @@ class Upload extends CI_Controller {
 
                 $csv = $this->csvreader->parse_csv(FCPATH . 'public/uploads/UploadMutasi.csv');
 
+                $template = array('No','Tanggal','Deskripsi','Debit','Kredit','Periode');
+
                 $keys = $csv['keys'];
                 $datas = $csv['data'];
 
-                $this->load->model('temp_transaksi');
-                foreach($datas as $data){
-                    $this->temp_transaksi->create($data);
+                $count = 1;
+                $check = 0;
+
+                for ($i=1; $i < count($keys); $i++) { 
+                    if($template[$i] != $keys[$i]){
+                        $check = 1;
+                    }
                 }
+
+                if(count($keys) != 6){
+                    $check = 1;
+                }
+
+                if($check == 0){
+                    foreach($datas as $data){
+                        if($data['Tanggal'] == ""){
+                            $check = 2;
+                            break;
+                        }
+                    }
+    
+                    if($check == 2){
+                        echo "<script>
+                            alert('isi kosong');
+                            window.location='".site_url('bendahara/upload')."';
+                            </script>";
+                    }
+                    else{
+                        $this->load->model('temp_transaksi');
+    
+                        foreach($datas as $data){
+                            $this->temp_transaksi->create($data);
+                        }
+                    }
+                }
+                else{
+                    echo "<script>
+                        alert('format tidak sama');
+                        window.location='".site_url('bendahara/upload')."';
+                        </script>";
+                }
+
+                
 
                 unlink(FCPATH . 'public/uploads/UploadMutasi.csv');
 
