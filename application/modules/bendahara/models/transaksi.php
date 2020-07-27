@@ -51,6 +51,13 @@ class Transaksi extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    
+    public function getPeriode(){
+        $this->db->select('*');
+        $this->db->from('periode');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function create($data)
     {
@@ -94,5 +101,28 @@ class Transaksi extends CI_Model
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("id" => $id));
-	}
+    }
+    
+    public function getByPeriode($data)
+    {
+        $this->db->select('transaksi.*, jenis_transaksi.nama as jenis_transaksi, kategori.nama as kategori, akun.nama as akun');
+        $this->db->from($this->_table);
+        $this->db->join('jenis_transaksi', 'jenis_transaksi.id = id_jenistransaksi', 'inner');
+        $this->db->join('kategori', 'kategori.id = id_kategori', 'inner');
+        $this->db->join('akun', 'akun.id = id_akun', 'inner');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    
+    public function getAllSaldo()
+    {
+        return $this->db->query("Select distinct 
+        periode, 
+       IFNULL((select sum(saldo) from transaksi b where b.periode=a.periode and b.id_jenistransaksi=1),0) as penerimaan,
+       IFNULL((select sum(saldo) from transaksi b where b.periode=a.periode and b.id_jenistransaksi=2),0) as pengeluaran,
+       IFNULL((select sum(saldo) from transaksi b where b.periode<a.periode),0) as periodeSebelum, 
+       IFNULL((select sum(saldo) from transaksi b where b.periode<=a.periode),0) as saldo
+       from transaksi a")->result();
+    }
 }

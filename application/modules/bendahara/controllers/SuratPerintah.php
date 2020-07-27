@@ -34,7 +34,7 @@ class SuratPerintah extends CI_Controller {
 		  );
 		$datas = json_decode (json_encode ($dummy), FALSE);
 		$periode = array(
-			'2019', '2020', '2021'
+			'2019', '2021', '2020'
 		);
 		$data = array(
 			'datas' => $datas,

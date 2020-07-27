@@ -26,9 +26,28 @@ class Laporan extends CI_Controller {
 				window.location='".site_url('dashboard')."';
 				</script>";
 		}
-		$datas=array("202005", "202004", "202003");
+		$this->load->model('transaksi');
+		$periode=$this->transaksi->getPeriode();
+		$datas= array(
+			array('donatur'=>'satu', 'periode'=>'202005'),
+			array('donatur'=>'dua', 'periode'=>'202006'),
+			array('donatur'=>'tiga', 'periode'=>'202006'),
+			array('donatur'=>'empat', 'periode'=>'202007'),
+			array('donatur'=>'lima', 'periode'=>'202007'),
+			array('donatur'=>'enam', 'periode'=>'202007'),
+		);
+		$datas = json_decode (json_encode ($datas), FALSE);
+		
+		$counts= array(
+			array('periodeSebelum'=>'saldo sebelum', 'penerimaan'=>'satu','pengeluaran'=>'satu','saldo'=>'saldo sekarang',  'periode'=>'202005'),
+			array('periodeSebelum'=>'saldo sebelum', 'penerimaan'=>'satu','pengeluaran'=>'satu','saldo'=>'saldo sekarang',  'periode'=>'202006'),
+			array('periodeSebelum'=>'saldo sebelum', 'penerimaan'=>'satu','pengeluaran'=>'satu','saldo'=>'saldo sekarang',  'periode'=>'202007'),
+		);
+		$counts = $this->transaksi->getAllSaldo();
 		$data = array(
+			'periode' => $periode,
 			'datas' => $datas,
+			'counts' => $counts,
 		);
         $this->template->load("dashboard/template", "laporan/laporan", "Laporan", $data);
 		//load("dashboard/template", "viewFolder/view", "Header")
