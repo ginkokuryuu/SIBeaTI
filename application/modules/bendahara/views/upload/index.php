@@ -4,9 +4,10 @@
             <h1 class="h2">Upload File Mutasi</h1>
             <p>Hal yang perlu diperhatikan :</p>
             <ul>
-            <li>Format isian disesuaikan dengan <a href="<?= site_url('bendahara/upload/downloadFormat') ?>">contohFormat.csv</a></li>
+            <li>Format isian disesuaikan dengan <a href="<?= site_url('bendahara/upload/downloadFormat') ?>">UploadMutasi.csv</a></li>
             <li>File berformat .csv</li>
             <li>Pastikan format csv dipisah menggunakan koma (,). (Jika bukan koma, bisa dirubah dengan cara mengganti Regional Format di Setting menjadi English (United States))</li>
+            <li>Pastikan nama file yang di upload adalah UploadMutasi.csv</li>
             </ul>
             <div class="form-inline">
                 <label class="sr-only" for="inlineFormInputName2">Name</label>
@@ -20,14 +21,17 @@
 </div>
 
 <script>
+    var filename;
+
     function validateFile(){        
         var f = document.getElementById("file");
         if(f.value == ""){
             alert("Please upload a file!");
         }
         else{
-            if(!hasExtension(f, ['.csv'])){
-                alert("Format not .csv");
+            if(filename != 'UploadMutasi.csv')
+            {
+                alert('nama file tidak sesuai');
             }
             else{
                 document.getElementById("form").submit();
@@ -39,4 +43,10 @@
         var fileName = file.value;
         return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
     }
+
+    $(document).ready(function(){
+        $("#file").on("change", function(e) {
+            filename = e.target.files[0].name;
+        })
+    });
 </script>

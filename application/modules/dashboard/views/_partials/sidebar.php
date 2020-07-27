@@ -46,6 +46,10 @@
             <a class="nav-link" href="<?php echo site_url('bendahara/suratperintah') ?>">
                 <i class="fas fa-file"></i>
                 <span>Surat Perintah</span></a>
+        <li class="nav-item <?php echo $this->uri->segment(2) == 'edit' ? 'active': '' ?>">
+            <a class="nav-link" href="<?php echo site_url('bendahara/edit') ?>">
+                <i class="fas fa-fw fa-edit"></i>
+                <span>Edit Transaksi</span></a>
         </li>
     <?php endif; ?>
 </ul>

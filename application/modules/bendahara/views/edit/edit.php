@@ -5,20 +5,6 @@
 <?php $this->load->view('forms/transferTrans'); ?>
 
 <div style="margin-left:5%; margin-right:5%;">
-    <div class="alert alert-primary" role="alert">
-        Ingat, ini tidak akan disimpan ke database sebelum di simpan!
-    </div>
-
-    <div class='form-inline' style='margin-top: 2%; margin-bottoM: 2%;'>
-        <h3>Simpan ke database</h3>
-        <a href="<?= site_url('bendahara/edit/saveDatabase') ?>" class='btn btn-primary' style='margin-left: 1%;'>Save</a>
-    </div>
-
-    <div class='form-inline' style='margin-top: 2%; margin-bottoM: 2%;'>
-        <h5>Hapus semua</h5>
-        <a href="<?= site_url('bendahara/edit/deleteAll') ?>" class='btn btn-danger' style='margin-left: 1%;'>Hapus</a>
-    </div>
-
     <table class="table table-light">
     <thead class="thead-dark">
         <tr>

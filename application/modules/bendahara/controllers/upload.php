@@ -26,7 +26,27 @@ class Upload extends CI_Controller {
 				window.location='".site_url('dashboard')."';
 				</script>";
         }
-		$this->template->load("dashboard/template", "upload/index", "Upload File Mutasi");
+
+        $this->load->model('temp_transaksi');
+
+        $data = $this->temp_transaksi->getAll();
+
+        $count = 0;
+
+        foreach($data as $d){
+            $count++;
+        }
+
+        if($count > 0){
+            echo "<script>
+                alert('anda memiliki data yang belum disimpan');
+                window.location='".site_url('bendahara/edit/editAwal')."';
+                </script>";
+        }
+        else{
+            $this->template->load("dashboard/template", "upload/index", "Upload File Mutasi");
+        }
+
     }
     
     public function uploadAction(){
@@ -46,15 +66,58 @@ class Upload extends CI_Controller {
             {
                 $this->load->library('csvreader');
 
-                $csv = $this->csvreader->parse_csv(FCPATH . 'public/uploads/contohFormat.csv');
+                $csv = $this->csvreader->parse_csv(FCPATH . 'public/uploads/UploadMutasi.csv');
+
+                $template = array('No','Tanggal','Deskripsi','Debit','Kredit','Periode');
 
                 $keys = $csv['keys'];
                 $datas = $csv['data'];
 
-                $this->load->model('temp_transaksi');
-                foreach($datas as $data){
-                    $this->temp_transaksi->create($data);
+                $count = 1;
+                $check = 0;
+
+                for ($i=1; $i < count($keys); $i++) { 
+                    if($template[$i] != $keys[$i]){
+                        $check = 1;
+                    }
                 }
+
+                if(count($keys) != 6){
+                    $check = 1;
+                }
+
+                if($check == 0){
+                    foreach($datas as $data){
+                        if($data['Tanggal'] == ""){
+                            $check = 2;
+                            break;
+                        }
+                    }
+    
+                    if($check == 2){
+                        echo "<script>
+                            alert('isi kosong');
+                            window.location='".site_url('bendahara/upload')."';
+                            </script>";
+                    }
+                    else{
+                        $this->load->model('temp_transaksi');
+    
+                        foreach($datas as $data){
+                            $this->temp_transaksi->create($data);
+                        }
+                    }
+                }
+                else{
+                    echo "<script>
+                        alert('format tidak sama');
+                        window.location='".site_url('bendahara/upload')."';
+                        </script>";
+                }
+
+                
+
+                unlink(FCPATH . 'public/uploads/UploadMutasi.csv');
 
                 echo "<script>
                     alert('upload berhasil');
@@ -78,9 +141,9 @@ class Upload extends CI_Controller {
     }
 
     public function downloadFormat(){
-        $fileLocation = base_url("public/files/contohFormat.csv");
+        $fileLocation = base_url("public/files/UploadMutasi.csv");
         $file = file_get_contents($fileLocation);
 
-        force_download("contohFormat.csv", $file);
+        force_download("UploadMutasi.csv", $file);
     }
 }
