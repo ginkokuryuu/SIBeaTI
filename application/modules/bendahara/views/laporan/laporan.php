@@ -23,7 +23,55 @@
     Pilih Jenis Laporan
     </div>
     <div class="report-content" id="neraca" style="display:none;">
-    Neraca Content
+        <table id='table-neraca'>
+            <tr>
+                <th>Saldo</th>
+                <th colspan='3'>Transaksi</th>
+            </tr>
+            <tr>
+                <th>Akun</th>
+                <th>T1-Penerimaan</th>
+                <th>T2-Pengeluaran</th>
+                <th>Saldo</th>
+            </tr>
+            <?php foreach($akun as $akun):?>
+                <tr style="font-weight :bold;">
+                    <td id="data_akun"><a style="display:inline;" class=<?php echo "child".$akun->nama;?> onclick="neraca_button(this)" id=<?php echo $akun->nama;?> href="#">[ - ]</a><?php echo $akun->nama;?></td>
+                    <td class="table_numeral"><?php $format= $akun->penerimaan_tahun; echo number_format($format, 0, ",", ".");?></td>
+                    <td class="table_numeral"><?php $format= $akun->pengeluaran_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                    <td class="table_numeral"><?php $format= $akun->saldo_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                </tr>
+                
+                <?php foreach($t_periode as $tp):?>
+                    <?php if($akun->nama==$tp->nama):?>
+                    <tr class=<?php echo "child".$akun->nama;?> id="<?php echo $akun->nama;?>">
+                        <td id="data_tahun"><a style="display:inline;" class="<?php echo "child".$akun->nama." child".$tp->periode_tahun;?>" onclick="neraca_button(this)" id=<?php echo $akun->nama.$tp->periode_tahun;?> href="#">[ - ]</a><?php echo $tp->periode_tahun;?></td>
+                        <td class="table_numeral"><?php $format= $tp->penerimaan_tahun; echo number_format($format, 0, ",", ".");?></td>
+                        <td class="table_numeral"><?php $format= $tp->pengeluaran_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                        <td class="table_numeral"><?php $format= $tp->saldo_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                    </tr>
+                    
+                    <?php foreach($kategori as $k):?>
+                        <?php if($akun->nama==$k->nama && $tp->periode_tahun==$k->periode_tahun):?>
+                        <tr class="<?php echo "child".$akun->nama." child".$tp->periode_tahun;?>" id="<?php echo $akun->nama.$tp->periode_tahun;?>">
+                            <td id="data_kategori"><?php echo $k->kategori;?></td>
+                            <td class="table_numeral"><?php $format=$k->penerimaan_tahun; echo number_format($format, 0, ",", ".");?></td>
+                            <td class="table_numeral"><?php $format=$k->pengeluaran_tahun;  if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                            <td class="table_numeral"><?php $format=$k->saldo_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                        </tr>
+                        <?php endif;?>
+                    <?php endforeach;?>
+                    <?php endif;?>
+                <?php endforeach;?>
+            <?php endforeach;?>
+            <tr id='total'>
+                <?php foreach($total as $sum):?>
+                <th>Total</th>
+                <th class="table_numeral"><?php $format= $sum->penerimaan_total; echo number_format($format, 0, ",", ".");?></th>
+                <th class="table_numeral"><?php $format= $sum->pengeluaran_total; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></th>
+                <th class="table_numeral"><?php $format= $sum->saldo_total ;if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></th>
+            <?php endforeach;?>
+        </table>
     </div>
     <div class="report-content" id="laporan-bulanan"  style="display:none;">
     Laporan Content
@@ -32,7 +80,7 @@
         <div class="report-content" id=<?php echo $p->id; ?>  style="display:none;">
             <div class="textBoxHeader">
                 <div class="s-Icon" id=<?php echo $p->id;?> onclick="fnSelect(this);">
-                    <i class="far fa-fw fa-copy" style = "position:relative; top:-3px;"></i>
+                    <i class="far fa-fw fa-copy" style = "position:relative; top:3px;"></i>
                 </div>
             </div>
             <div class="textBox" id=<?php echo "textBox".$p->id;?> contenteditable>
@@ -41,21 +89,21 @@
                 _*A. Penerimaan & Pengeluaran Periode <?php echo $p->nama; ?>*_<br/>
                 1. Donatur
                 <br/>
-                <?php $i = 0; $first=0; $len = count($datas);foreach($datas as $data):?>
-                    <?php if($data->periode==$p->id):?>
+                <?php $i = 0; $first=0; $len = count($donatur); foreach($donatur as $d):?>
+                    <?php if($d->periode==$p->id):?>
                         <?php if( $i<=$len-1&& $first!=0) echo ", ";?>
-                        <?php echo $data->donatur; $first=1;?>
+                        <?php echo $d->donatur; $first=1;?>
                     <?php endif; $i++; ?>
-                <?php endforeach; ?>
+                <?php endforeach;?>
                 <br/>
                 <br/>
                 2. Posisi Keuangan<br/>
                 <?php foreach($counts as $count):?>
                     <?php if($count->periode==$p->id):?>
-                        <?php echo "Saldo Akhir Bulan ".$p->nama." : ".$count->periodeSebelum;?><br/>
-                        <?php echo "Penerimaan Bulan ".$p->nama." : ".$count->penerimaan;?><br/>
-                        <?php echo "Penyaluran Bulan ".$p->nama." : ".$count->pengeluaran;?><br/>
-                        <?php echo "Saldo Akhir Bulan ".$p->nama." : ".$count->saldo;?><br/>
+                        <?php $format=$count->periodeSebelum; if($format<0) $format=($format*-1);echo "Saldo Akhir Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
+                        <?php $format=$count->penerimaan; if($format<0) $format=($format*-1);echo "Penerimaan Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
+                        <?php $format=$count->pengeluaran; if($format<0) $format=($format*-1); echo "Penyaluran Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
+                        <?php $format=$count->saldo; if($format<0) $format=($format*-1); echo "Saldo Akhir Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
                     <?php endif; ?>
                 <?php endforeach; ?>
                 <br/>
@@ -73,6 +121,43 @@
     <?php endforeach; ?>
 </div>
 <script>
+    function neraca_button(component){
+        if(component.innerHTML=='[ + ]'){
+            var childs = document.getElementsByClassName(component.className);
+            var lengthOfArray = childs.length;
+            for (var i=0; i<lengthOfArray;i++){
+                childs[i].style.display='table-row';
+            };
+            component.style.display='inline';
+            component.innerHTML='[ - ]';
+            
+            var list_link = document.getElementsByTagName('A');
+            for (var i=0; i<list_link.length;i++){
+                if(list_link[i].parentNode.id=='data_tahun' && list_link[i].style.display!='inline'){
+                    list_link[i].style.display='inline';
+                }
+                if(list_link[i].innerHTML=='[ + ]' && list_link[i].style.display=='inline'){
+                    var childs = document.getElementsByClassName(list_link[i].className);
+                    var lengthOfArray = childs.length;
+                    for (var j=0; j<lengthOfArray;j++){
+                        childs[j].style.display='none';
+                    }
+                    list_link[i].style.display='inline';
+                }
+            }
+        }
+        else if(component.innerHTML=='[ - ]'){
+            var childs = document.getElementsByClassName(component.className);
+            var lengthOfArray = childs.length;
+            for (var i=0; i<lengthOfArray;i++){
+                childs[i].style.display='none';
+            };
+            component.style.display='inline';
+            component.innerHTML='[ + ]';
+            return;
+        }
+        
+    }
     function laporanSpinner(report){
         var choice = report.options[report.selectedIndex].value;
         var reportContents = document.getElementsByClassName('report-content');

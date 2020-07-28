@@ -33,3 +33,27 @@
 .s-Icon:hover{
     background-color:#abb2dd;
 }
+table, tr, td, th{
+    border: 1px solid #252525; 
+}
+td{
+    padding: 0px 10px;
+}
+th{
+    width:150px;
+    background-color: #c9c9c9;
+    padding: 0px 10px;
+}
+#data_tahun{
+    padding-left:20px;
+}
+#data_kategori{
+    padding-left:30px;
+}
+.table_numeral{
+    padding-right:20px;
+    text-align:right;
+}
+#b-sidetext{
+    display:inline;
+}
