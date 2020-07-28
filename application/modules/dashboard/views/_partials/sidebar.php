@@ -30,5 +30,15 @@
                 <i class="fas fa-fw fa-edit"></i>
                 <span>Edit Transaksi</span></a>
         </li>
+        <li class="nav-item <?php echo $this->uri->segment(2) == 'crud_ak' ? 'active': '' ?>">
+            <a class="nav-link" href="<?php echo site_url('bendahara/crud_ak') ?>">
+                <i class="fas fa-fw fa-edit"></i>
+                <span>List Kategori dan Akun</span></a>
+        </li>
+        <li class="nav-item <?php echo $this->uri->segment(2) == 'crud_donatur' ? 'active': '' ?>">
+            <a class="nav-link" href="<?php echo site_url('bendahara/crud_donatur') ?>">
+                <i class="fas fa-fw fa-edit"></i>
+                <span>List Donatur</span></a>
+        </li>
     <?php endif; ?>
 </ul>

@@ -31,7 +31,7 @@ class Edit extends CI_Controller {
 
 		$this->load->model('transaksi');
 
-		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori');
+		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori', 'Alias Donatur');
 		$datas = $this->transaksi->getAll();
 
 		$akuns = $this->transaksi->getAkun();
@@ -61,7 +61,7 @@ class Edit extends CI_Controller {
 		
 		$this->load->model('temp_transaksi');
 
-		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori');
+		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori', 'Alias Donatur');
 		$datas = $this->temp_transaksi->getAll();
 
 		$akuns = $this->temp_transaksi->getAkun();
@@ -211,7 +211,8 @@ class Edit extends CI_Controller {
 					'kategori' => $data['pc-kategori'],
 					'akun' => $data['pc-akun'],
 					'periode' => $data['pc-periode'],
-					'tanggal' => $data['pc-tanggal']
+					'tanggal' => $data['pc-tanggal'],
+					'inisial_donatur' => $data['pc-inisial_donatur'][$count]
 				);
 				
 				$this->transaksi->split($param);
@@ -254,7 +255,8 @@ class Edit extends CI_Controller {
 				'akun' => $data['tf-akun'],
 				'akun_tujuan' => $data['tf-akun_tujuan'],
 				'periode' => $data['tf-periode'],
-				'tanggal' => $data['tf-tanggal']
+				'tanggal' => $data['tf-tanggal'],
+				'inisial_donatur' => $data['tf-inisial_donatur']
 			);
 			
 			$this->transaksi->createBalance($param);

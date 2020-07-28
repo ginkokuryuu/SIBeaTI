@@ -1,6 +1,6 @@
 <div class='border shadow overlay' id='ov-transfer'>
     <div class='header'>
-        <h2 style='float: left;'>Pecah</h1>
+        <h2 style='float: left;'>Transfer</h1>
         <div class='close-btn' style='float: right;'>
             <button style='background: none; border: none; color: white; font-size: 130%;' onclick='closeTransfer()'>x</button>
         </div>
@@ -34,6 +34,7 @@
             <input type="hidden" name='tf-periode' id='tf-periode' required>
             <input type="hidden" name='tf-akun' id='tf-akun' required>
             <input type="hidden" name='tf-kategori' id='tf-kategori' required>
+            <input type="hidden" name='tf-inisial_donatur' id='tf-inisial_donatur' required>
         </form>
     </div>
     <button class='btn btn-primary' onclick='submitTransferForm()' style='margin-left: 3%;'>Transfer</button>
