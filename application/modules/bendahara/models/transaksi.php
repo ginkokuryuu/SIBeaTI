@@ -178,7 +178,7 @@ class Transaksi extends CI_Model
 
     public function getDonatur(){
         return $this->db
-        ->query('select id_donatur as donatur, periode from transaksi where id_kategori=1 and saldo>0')
+        ->query('select inisial_donatur as donatur, periode from transaksi where id_kategori=1 and saldo>0')
         ->result();
         
     }
