@@ -288,7 +288,6 @@ ON x.id_akun = akun.id
         group by id_akun, substring(periode,1,4)")->result();
     }
     */
-}
     public function updateDonatur($donatur){
         if($donatur != ""){
             $sql = "INSERT INTO donatur (inisial)" .

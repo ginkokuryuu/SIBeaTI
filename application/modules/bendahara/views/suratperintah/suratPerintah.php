@@ -7,24 +7,25 @@
             <select name="periode" id="periode" onChange='periodeSpin(this)'>
                     <option value='-'>-</option>
                 <?php foreach($periode as $p): ?>
-                    <option value=<?php echo $p; ?>><?php echo $p; ?></option>
+                    <option value="<?php echo $p->periode_range; ?>"><?php echo $p->periode_range; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <?php foreach($periode as $p){ ?>
-            <table class='table-list' style='display:none' id=<?php echo $p?>>
+        <?php foreach($periode as $p): ?>
+            <table class='table-list' style='display:none' id='<?php echo $p->periode_range?>'>
                 <tr>
-                    <th>Nama</th>
-                    <th>NRP</th>
+                    <th width='250px'>Nama</th>
+                    <th width='250px'>Nomor Rekening</th>
                 </tr>
-                <?php foreach($datas as $data){ ?>
+                <?php foreach($datas as $data): ?>
+                <?php if($p->periode_range==$data->periode_range):?>
                     <tr>
-                        <td width='250px'><?php echo $data->Nama; ?></td>
-                        <td width='250px'><?php echo $data->NRP; ?></td>
+                        <td><?php echo $data->nama; ?></td>
+                        <td><?php echo $data->norek; ?></td>
                     </tr>
-                <?php } ?>
+                <?php endif; endforeach; ?>
             </table>
-        <?php } ?>
+        <?php endforeach; ?>
         Surat Perintah Transfer :
         <form action="<?= site_url('bendahara/SuratPerintah/DownloadLaporan') ?>" method="POST" id='bukaPDF'>
             <input type="hidden" name='periode' id='formPeriode' value='-'></input>
@@ -41,7 +42,7 @@
     }
     function periodeSpin(report){
         var choice = report.options[report.selectedIndex].value;
-        document.getElementById('formPeriode').value=choice;
+        document.getElementById('formPeriode').value = choice;
         var reportContents = document.getElementsByClassName('table-list');
         var lengthOfArray = reportContents.length;
         for (var i=0; i<lengthOfArray;i++){

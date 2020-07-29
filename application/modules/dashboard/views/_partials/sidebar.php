@@ -56,5 +56,10 @@
                 <i class="fas fa-fw fa-edit"></i>
                 <span>List Donatur</span></a>
         </li>
+        <li class="nav-item <?php echo $this->uri->segment(2) == 'crud-periode' ? 'active': '' ?>">
+            <a class="nav-link" href="<?php echo site_url('bendahara/crud_periode') ?>">
+                <i class="fas fa-fw fa-edit"></i>
+                <span>List Periode</span></a>
+        </li>
     <?php endif; ?>
 </ul>

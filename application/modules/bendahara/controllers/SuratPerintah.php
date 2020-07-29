@@ -26,16 +26,9 @@ class SuratPerintah extends CI_Controller {
 				window.location='".site_url('dashboard')."';
 				</script>";
 		} 
-		$dummy=array
-		  (
-		  array('Nama'=>"Nama 1",'NRP'=>05111),
-		  array('Nama'=>"Nama 2",'NRP'=>05114),
-		  array('Nama'=>"Nama 3",'NRP'=>05113)
-		  );
-		$datas = json_decode (json_encode ($dummy), FALSE);
-		$periode = array(
-			'2019', '2021', '2020'
-		);
+		$this->load->model('penerima');
+		$datas =  $this->penerima->getAll();
+		$periode = $this->penerima->getPeriode();
 		$data = array(
 			'datas' => $datas,
 			'periode'=>$periode,
@@ -57,7 +50,8 @@ class SuratPerintah extends CI_Controller {
 		  array('Nama'=>"Nama 2",'NRP'=>05114,'norek'=>'no rek2'),
 		  array('Nama'=>"Nama 3",'NRP'=>05113,'norek'=>'no rek3')
 		  );
-		$datas = json_decode (json_encode ($dummy), FALSE);
+		$this->load->model('penerima');
+		$datas = $this->penerima->getNameByPeriode($data['periode']);
 
 		$pdf = new FPDF('P', 'pt', 'A4');
 		$pdf->AddPage(); 
@@ -65,14 +59,14 @@ class SuratPerintah extends CI_Controller {
 		$pdf->Cell(100, 16, "Surat Perintah Transfer",0,1);
 		$pdf->Cell(100, 16, "Periode ".$data['periode']."",0,1);
 		$pdf->Cell(10,7,'',0,1);
-        $pdf->SetFont('Arial','B',10);
-        $pdf->Cell(80,14,'NRP',1,0);
-        $pdf->Cell(150,14,'Nama',1,0);
+		$pdf->SetFont('Arial','B',10);
+        //$pdf->Cell(80,14,'NRP',1,0);
+		$pdf->Cell(150,14,'Nama',1,0);
         $pdf->Cell(150,14,'Nomor Rekening',1,1);
 		$pdf->SetFont('Arial','',10);
 		foreach ($datas as $row){
-            $pdf->Cell(80,14,$row->NRP,1,0);
-            $pdf->Cell(150,14,$row->Nama,1,0);
+            //$pdf->Cell(80,14,$row->NRP,1,0);
+            $pdf->Cell(150,14,$row->nama,1,0);
             $pdf->Cell(150,14,$row->norek,1,1);
 		}
 		$pdf->Output();
