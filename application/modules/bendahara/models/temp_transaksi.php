@@ -22,6 +22,7 @@ class Temp_transaksi extends CI_Model
         $this->db->join('jenis_transaksi', 'jenis_transaksi.id = id_jenistransaksi', 'inner');
         $this->db->join('kategori', 'kategori.id = id_kategori', 'inner');
         $this->db->join('akun', 'akun.id = id_akun', 'inner');
+        $this->db->order_by('periode', 'DESC');
         $this->db->order_by('akun', 'ASC');
         $this->db->order_by('tanggal', 'DESC');
         $query = $this->db->get();
@@ -69,6 +70,7 @@ class Temp_transaksi extends CI_Model
         $this->saldo = $this->debit - $this->kredit;
         $this->periode = $data['Periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['Tanggal']));
+
         if($this->saldo >=0){
             $this->id_jenistransaksi = 1;
         }
@@ -92,6 +94,7 @@ class Temp_transaksi extends CI_Model
         $this->id_jenistransaksi = $data['jenis_trans'];
         $this->id_kategori = $data['kategori'];
         $this->id_akun = $data['akun'];
+        $this->inisial_donatur = $data['inisial_donatur'];
 
         return $this->db->update($this->_table, $this,array('id' => $data['id']));
     }
@@ -104,6 +107,7 @@ class Temp_transaksi extends CI_Model
         $this->id_akun = $data['akun'];
         $this->periode = $data['periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+        $this->inisial_donatur = $data['inisial_donatur'];
 
         $this->saldo = $this->debit - $this->kredit;
         if($this->saldo >=0){
@@ -124,6 +128,7 @@ class Temp_transaksi extends CI_Model
         $this->id_akun = $data['akun'];
         $this->periode = $data['periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+        $this->inisial_donatur = $data['inisial_donatur'];
 
         $this->saldo = $this->debit - $this->kredit;
         if($this->saldo >=0){
@@ -144,6 +149,7 @@ class Temp_transaksi extends CI_Model
         $this->id_akun = $data['akun_tujuan'];
         $this->periode = $data['periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+        $this->inisial_donatur = $data['inisial_donatur'];
 
         $this->saldo = $this->debit - $this->kredit;
         if($this->saldo >=0){

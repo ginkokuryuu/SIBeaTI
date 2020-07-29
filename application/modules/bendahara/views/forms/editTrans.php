@@ -66,6 +66,10 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="periode">Alias Donatur</label>
+                <input type="text" class="form-control" id="inisial_donatur" name="inisial_donatur" placeholder="inisial_donatur" required></input>
+            </div>
             <!-- hidden data -->
             <input type="hidden" name='id' id='id' required>
         </form>

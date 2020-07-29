@@ -47,6 +47,7 @@
             <td class='jenis_trans'><?php echo $data->jenis_transaksi; ?></td>
             <td class='akun'><?php echo $data->akun; ?></td>
             <td class='kategori'><?php echo $data->kategori; ?></td>
+            <td class='inisial_donatur'><?php echo $data->inisial_donatur; ?></td>
             <td>
                 <div>
                     <button class='btn btn-primary' id='edit' onclick='openEdit(<?php echo $count; ?>)'>Edit</button>
@@ -77,6 +78,7 @@
             var debit = this.document.getElementsByClassName('debit');
             var kredit = this.document.getElementsByClassName('kredit');
             var periode = this.document.getElementsByClassName('periode');
+            var inisial_donatur = this.document.getElementsByClassName('inisial_donatur');
 
             document.getElementById('tanggal').value = tanggal[count].innerHTML;
             document.getElementById('deskripsi').value = deskripsi[count].innerHTML;
@@ -86,6 +88,7 @@
             document.getElementById('jenis_trans').value = id_trans[count].innerHTML;
             document.getElementById('akun').value = id_akun[count].innerHTML;
             document.getElementById('kategori').value = id_kategori[count].innerHTML;
+            document.getElementById('inisial_donatur').value = inisial_donatur[count].innerHTML;
 
             document.getElementById('id').value = id[count].innerHTML;
 
@@ -115,6 +118,7 @@
             var debit = this.document.getElementsByClassName('debit');
             var kredit = this.document.getElementsByClassName('kredit');
             var periode = this.document.getElementsByClassName('periode');
+            var inisial_donatur = this.document.getElementsByClassName('inisial_donatur');
 
             document.getElementById('pc-id').value = id[count].innerHTML;
             document.getElementById('pc-tanggal').value = tanggal[count].innerHTML;
@@ -150,6 +154,7 @@
             var debit = this.document.getElementsByClassName('debit');
             var kredit = this.document.getElementsByClassName('kredit');
             var periode = this.document.getElementsByClassName('periode');
+            var inisial_donatur = this.document.getElementsByClassName('inisial_donatur');
 
             document.getElementById('tf-id').value = id[count].innerHTML;
             document.getElementById('tf-tanggal').value = tanggal[count].innerHTML;
@@ -158,6 +163,7 @@
             document.getElementById('tf-periode').value = periode[count].innerHTML;
             document.getElementById('tf-akun').value = id_akun[count].innerHTML;
             document.getElementById('tf-kategori').value = id_kategori[count].innerHTML;
+            document.getElementById('tf-inisial_donatur').value = inisial_donatur[count].innerHTML;
 
             document.getElementById('ov-transfer').style.display = 'block';
         }

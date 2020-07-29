@@ -14,6 +14,7 @@ class Transaksi extends CI_Model
     public $id_jenistransaksi;
     public $id_kategori;
     public $id_akun;
+    public $inisial_donatur;
 
     public function getAll()
     {
@@ -22,6 +23,7 @@ class Transaksi extends CI_Model
         $this->db->join('jenis_transaksi', 'jenis_transaksi.id = id_jenistransaksi', 'inner');
         $this->db->join('kategori', 'kategori.id = id_kategori', 'inner');
         $this->db->join('akun', 'akun.id = id_akun', 'inner');
+        $this->db->order_by('periode', 'DESC');
         $this->db->order_by('akun', 'ASC');
         $this->db->order_by('tanggal', 'DESC');
         $query = $this->db->get();
@@ -38,6 +40,9 @@ class Transaksi extends CI_Model
         $this->id_jenistransaksi = $data->id_jenistransaksi;
         $this->id_kategori = $data->id_kategori;
         $this->id_akun = $data->id_akun;
+        $this->inisial_donatur = $data->inisial_donatur;
+
+        $this->updateDonatur($this->inisial_donatur);
 
         $this->db->insert($this->_table, $this);
     }
@@ -76,6 +81,7 @@ class Transaksi extends CI_Model
         $this->saldo = $this->debit - $this->kredit;
         $this->periode = $data['Periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['Tanggal']));
+
         if($this->saldo >=0){
             $this->id_jenistransaksi = 1;
         }
@@ -99,6 +105,9 @@ class Transaksi extends CI_Model
         $this->id_jenistransaksi = $data['jenis_trans'];
         $this->id_kategori = $data['kategori'];
         $this->id_akun = $data['akun'];
+        $this->inisial_donatur = $data['inisial_donatur'];
+
+        $this->updateDonatur($this->inisial_donatur);
 
         return $this->db->update($this->_table, $this,array('id' => $data['id']));
     }
@@ -111,6 +120,7 @@ class Transaksi extends CI_Model
         $this->id_akun = $data['akun'];
         $this->periode = $data['periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+        $this->inisial_donatur = $data['inisial_donatur'];
 
         $this->saldo = $this->debit - $this->kredit;
         if($this->saldo >=0){
@@ -131,6 +141,9 @@ class Transaksi extends CI_Model
         $this->id_akun = $data['akun'];
         $this->periode = $data['periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+        $this->inisial_donatur = $data['inisial_donatur'];
+
+        $this->updateDonatur($this->inisial_donatur);
 
         $this->saldo = $this->debit - $this->kredit;
         if($this->saldo >=0){
@@ -151,6 +164,9 @@ class Transaksi extends CI_Model
         $this->id_akun = $data['akun_tujuan'];
         $this->periode = $data['periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
+        $this->inisial_donatur = $data['inisial_donatur'];
+
+        $this->updateDonatur($this->inisial_donatur);
 
         $this->saldo = $this->debit - $this->kredit;
         if($this->saldo >=0){
@@ -164,7 +180,7 @@ class Transaksi extends CI_Model
     }
 
     public function deleteAll(){
-        $this->db->delete($this->_table);
+        $this->db->empty_table($this->_table);
     }
 
     public function delete($id)
@@ -272,4 +288,19 @@ ON x.id_akun = akun.id
         group by id_akun, substring(periode,1,4)")->result();
     }
     */
+}
+    public function updateDonatur($donatur){
+        if($donatur != ""){
+            $sql = "INSERT INTO donatur (inisial)" .
+                    " SELECT * FROM (SELECT ?) AS tmp" .
+                    " WHERE NOT EXISTS (" .
+                        "SELECT inisial FROM donatur WHERE inisial = ?" .
+                    ") LIMIT 1;";
+            
+            $this->db->query($sql, [
+                $donatur,
+                $donatur
+            ]);
+        }
+    }
 }

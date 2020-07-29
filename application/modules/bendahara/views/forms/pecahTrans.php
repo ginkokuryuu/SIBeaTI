@@ -13,12 +13,14 @@
                     <input type="text" class="form-control" name="pc-deskripsi[]" style="margin-right:1%" placeholder="Deskripsi Pecahan" value="Deskripsi Pecahan" required></input>
                     <input type="text" class="form-control" name="pc-debit[]" style="margin-right:1%" placeholder="Debit" required></input>
                     <input type="text" class="form-control" name="pc-kredit[]" style="margin-right:1%" placeholder="Kredit" required></input>
+                    <input type="text" class="form-control" name="pc-inisial_donatur[]" style="margin-right:1%" placeholder="inisial_donatur" required></input>
                     <a href="#" class="remove_field" style='margin-left:1%; display:none;'>Remove</a>
                 </div>
                 <div class='form-inline' style="margin-top:1%;">
                     <input type="text" class="form-control" name="pc-deskripsi[]" style="margin-right:1%" placeholder="Deskripsi Pecahan" value="Deskripsi Pecahan" required></input>
                     <input type="text" class="form-control" name="pc-debit[]" style="margin-right:1%" placeholder="Debit" required></input>
                     <input type="text" class="form-control" name="pc-kredit[]" style="margin-right:1%" placeholder="Kredit" required></input>
+                    <input type="text" class="form-control" name="pc-inisial_donatur[]" style="margin-right:1%" placeholder="inisial_donatur" required></input>
                     <a href="#" class="remove_field" style='margin-left:1%; display:none;'>Remove</a>
                 </div>
             </div>
@@ -54,6 +56,7 @@ $(document).ready(function() {
                     '<input type="text" class="form-control" name="pc-deskripsi[]" style="margin-right:1%" placeholder="Deskripsi Pecahan" value="Deskripsi Pecahan" required></input>' +
                     '<input type="text" class="form-control" name="pc-debit[]" style="margin-right:1%" placeholder="Debit" value="0" required></input>' +
                     '<input type="text" class="form-control" name="pc-kredit[]" style="margin-right:1%" placeholder="Kredit" value="0" required></input>' +
+                    '<input type="text" class="form-control" name="pc-inisial_donatur[]" style="margin-right:1%" placeholder="inisial_donatur" required></input>' +
                     '<a href="#" class="remove_field" style="margin-left:1%;">Remove</a>' +
                 '</div>'
             ); //add input box
