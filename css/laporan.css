@@ -47,8 +47,11 @@ th{
 #data_tahun{
     padding-left:20px;
 }
-#data_kategori{
+#data_bulan{
     padding-left:30px;
+}
+#data_kategori{
+    padding-left:40px;
 }
 .table_numeral{
     padding-right:20px;

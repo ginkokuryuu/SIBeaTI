@@ -219,26 +219,36 @@ class Transaksi extends CI_Model
         return $this->db->query("select 
 		akun.nama as nama,
         substring(periode,1,4) as periode_tahun, 
-        IFNULL((select sum(y.saldo) from transaksi y where substring(y.periode,1,4)=substring(x.periode,1,4) and id_jenistransaksi='1'),0) as penerimaan_tahun, 
-        IFNULL((select sum(y.saldo) from transaksi y where substring(y.periode,1,4)=substring(x.periode,1,4) and id_jenistransaksi='2'),0) as pengeluaran_tahun, 
-        IFNULL((select sum(y.saldo) from transaksi y where substring(y.periode,1,4)=substring(x.periode,1,4)),0) as saldo_tahun
+        IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and substring(y.periode,1,4)=substring(x.periode,1,4) and id_jenistransaksi='1'),0) as penerimaan_tahun, 
+        IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and substring(y.periode,1,4)=substring(x.periode,1,4) and id_jenistransaksi='2'),0) as pengeluaran_tahun, 
+        IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and substring(y.periode,1,4)=substring(x.periode,1,4)),0) as saldo_tahun
         from transaksi x LEFT JOIN akun
 ON x.id_akun = akun.id
         group by id_akun, substring(periode,1,4)")->result();
     }
-    public function getPeriodeTahunanDetail()
+    public function getPeriodeTahunBulan()
     {
-        return $this->db->query("select 
-		kategori.nama as kategori,
-		akun.nama as nama,
-        substring(periode,1,4) as periode_tahun, 
-        IFNULL((select sum(y.saldo) from transaksi y where substring(y.periode,1,4)=substring(x.periode,1,4) and id_jenistransaksi='1'),0) as penerimaan_tahun, 
-        IFNULL((select sum(y.saldo) from transaksi y where substring(y.periode,1,4)=substring(x.periode,1,4) and id_jenistransaksi='2'),0) as pengeluaran_tahun, 
-        IFNULL((select sum(y.saldo) from transaksi y where substring(y.periode,1,4)=substring(x.periode,1,4)),0) as saldo_tahun
-        from transaksi x LEFT JOIN akun
-ON x.id_akun = akun.id LEFT JOIN kategori
-ON x.id_kategori = kategori.id
-        group by id_kategori, id_akun, substring(periode,1,4)")->result();
+        return $this->db->query("select distinct 
+        akun.nama as nama,
+        substring(periode,1,4) as periode_tahun,
+        periode.nama as nama_bulan,
+        periode,
+                IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and x.periode=y.periode and id_jenistransaksi='1'),0) as penerimaan_tahun, 
+                IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and x.periode=y.periode and id_jenistransaksi='2'),0) as pengeluaran_tahun, 
+                IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and x.periode=y.periode),0) as saldo_tahun
+        from transaksi x left join akun on x.id_akun=akun.id left join periode on periode.id=x.periode")->result();
+    }
+    public function getPeriodeTahunDetail()
+    {
+        return $this->db->query("select distinct 
+        akun.nama as nama,
+        kategori.nama as kategori,
+        substring(periode,1,4) as periode_tahun,
+        periode,
+                IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and x.periode=y.periode and id_jenistransaksi='1' and x.id_kategori=y.id_kategori),0) as penerimaan_tahun, 
+                IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and x.periode=y.periode and id_jenistransaksi='2' and x.id_kategori=y.id_kategori),0) as pengeluaran_tahun, 
+                IFNULL((select sum(y.saldo) from transaksi y where x.id_akun=y.id_akun and x.periode=y.periode and x.id_kategori=y.id_kategori),0) as saldo_tahun
+        from transaksi x left join akun on x.id_akun=akun.id left join kategori on x.id_kategori=kategori.id")->result();
     }
     public function getTotal()
     {

@@ -51,14 +51,24 @@
                         <td class="table_numeral"><?php $format= $tp->saldo_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
                     </tr>
                     
-                    <?php foreach($kategori as $k):?>
-                        <?php if($akun->nama==$k->nama && $tp->periode_tahun==$k->periode_tahun):?>
+                    <?php foreach($t_bulan as $tb):?>
+                        <?php if($akun->nama==$tb->nama && $tp->periode_tahun==$tb->periode_tahun):?>
                         <tr class="<?php echo "child".$akun->nama." child".$tp->periode_tahun;?>" id="<?php echo $akun->nama.$tp->periode_tahun;?>">
-                            <td id="data_kategori"><?php echo $k->kategori;?></td>
-                            <td class="table_numeral"><?php $format=$k->penerimaan_tahun; echo number_format($format, 0, ",", ".");?></td>
-                            <td class="table_numeral"><?php $format=$k->pengeluaran_tahun;  if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
-                            <td class="table_numeral"><?php $format=$k->saldo_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                            <td id="data_bulan"><a style="display:inline;" class="<?php echo "child".$akun->nama." child".$tp->periode_tahun." child".$tb->periode;?>" onclick="neraca_button(this)" id=<?php echo $akun->nama.$tp->periode_tahun.$tb->periode;?> href="#">[ - ]</a><?php echo $tb->nama_bulan;?></td>
+                            <td class="table_numeral"><?php $format=$tb->penerimaan_tahun; echo number_format($format, 0, ",", ".");?></td>
+                            <td class="table_numeral"><?php $format=$tb->pengeluaran_tahun;  if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                            <td class="table_numeral"><?php $format=$tb->saldo_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
                         </tr>
+                            <?php foreach($kategori as $k):?>
+                            <?php if($akun->nama==$k->nama && $tp->periode_tahun==$k->periode_tahun && $tb->periode==$k->periode):?>
+                            <tr class="<?php echo "child".$akun->nama." child".$tp->periode_tahun." child".$tb->periode;?>" id="<?php echo $akun->nama.$tp->periode_tahun;?>">
+                                <td id="data_kategori"><?php echo $k->kategori;?></td>
+                                <td class="table_numeral"><?php $format=$k->penerimaan_tahun; echo number_format($format, 0, ",", ".");?></td>
+                                <td class="table_numeral"><?php $format=$k->pengeluaran_tahun;  if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                                <td class="table_numeral"><?php $format=$k->saldo_tahun; if($format<0) echo "(".number_format(($format*-1), 0, ",", ".").")"; else echo number_format($format, 0, ",", ".");?></td>
+                            </tr>
+                            <?php endif;?>
+                            <?php endforeach;?>
                         <?php endif;?>
                     <?php endforeach;?>
                     <?php endif;?>
@@ -133,7 +143,7 @@
             
             var list_link = document.getElementsByTagName('A');
             for (var i=0; i<list_link.length;i++){
-                if(list_link[i].parentNode.id=='data_tahun' && list_link[i].style.display!='inline'){
+                if((list_link[i].parentNode.id=='data_tahun' || list_link[i].parentNode.id=='data_bulan') && list_link[i].style.display!='inline'){
                     list_link[i].style.display='inline';
                 }
                 if(list_link[i].innerHTML=='[ + ]' && list_link[i].style.display=='inline'){

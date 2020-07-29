@@ -32,7 +32,8 @@ class Laporan extends CI_Controller {
 		$akun=$this->transaksi->getTotalAkun();
 		$t_periode=$this->transaksi->getPeriodeTahunan();
 		$counts = $this->transaksi->getAllSaldo();
-		$kategori = $this->transaksi->getPeriodeTahunanDetail();
+		$t_bulan = $this->transaksi->getPeriodeTahunBulan();
+		$kategori = $this->transaksi->getPeriodeTahunDetail();
 		$total = $this->transaksi->getTotal();
 		$data = array(
 			'periode' => $periode,
@@ -42,6 +43,7 @@ class Laporan extends CI_Controller {
 			't_periode' => $t_periode,
 			'kategori' =>$kategori,
 			'total' => $total,
+			't_bulan' => $t_bulan,
 		);
         $this->template->load("dashboard/template", "laporan/laporan", "Laporan", $data);
 		//load("dashboard/template", "viewFolder/view", "Header")
