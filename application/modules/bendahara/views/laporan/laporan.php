@@ -119,7 +119,7 @@
                 <br/>
                 _*B. Penyaluran Beasiswa Alumni IF_*<br/>
                 <br/>
-                1. Rencana penyaluran selanjutnya pada bulan Juni-2020<br/>
+                1. <?php echo $p->deskripsi?><br/>
                 2. Bagi para donatur beasiswa dapat dikirimkan langsung ke rekening berikut.<br/>
                 <br/>
                 Bank Mandiri Cabang Kota Kediri<br/>
