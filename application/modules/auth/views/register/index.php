@@ -11,7 +11,7 @@
             <h1 class="h2">Register Mahasiswa</h1>
             <form action="<?= site_url('auth/register/regis') ?>" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username/NRP" required />
+                    <input type="text" class="form-control" id="username" name="username" placeholder="NRP" required />
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />

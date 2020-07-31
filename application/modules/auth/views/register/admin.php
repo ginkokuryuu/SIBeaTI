@@ -11,7 +11,7 @@
             <h1 class="h2">Register Admin</h1>
             <form action="<?= site_url('auth/register/regis') ?>" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username/NRP" required />
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required />
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
@@ -58,5 +58,5 @@
 
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword; // password yg dimasukkan harus ssesuai
-    username.onchange = validateUsername;       // username untuk mahasiswa berupa nrp dgn panjang 14
+    username.onchange = validateUsername;       
 </script>

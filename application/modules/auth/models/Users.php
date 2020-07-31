@@ -72,7 +72,12 @@ class Users extends CI_Model{
     }
 
     public function isNotLogin(){
-        return $this->session->userdata('user_logged') === null;
+        if($this->session->has_userdata('username')){
+			return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public function changePassword($data){
