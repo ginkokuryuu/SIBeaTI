@@ -67,7 +67,7 @@ class Temp_transaksi extends CI_Model
         $this->deskripsi = $data['Deskripsi'];
         $this->debit = $data['Debit'];
         $this->kredit = $data['Kredit'];
-        $this->saldo = $this->debit - $this->kredit;
+        $this->saldo = $this->kredit - $this->debit;
         $this->periode = $data['Periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['Tanggal']));
 
@@ -88,10 +88,15 @@ class Temp_transaksi extends CI_Model
         $this->deskripsi = $data['deskripsi'];
         $this->debit = $data['debit'];
         $this->kredit = $data['kredit'];
-        $this->saldo = $this->debit - $this->kredit;
+        $this->saldo = $this->kredit - $this->debit;
         $this->periode = $data['periode'];
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
-        $this->id_jenistransaksi = $data['jenis_trans'];
+        if($this->saldo >=0){
+            $this->id_jenistransaksi = 1;
+        }
+        else{
+            $this->id_jenistransaksi = 2;
+        }
         $this->id_kategori = $data['kategori'];
         $this->id_akun = $data['akun'];
         $this->inisial_donatur = $data['inisial_donatur'];
@@ -109,7 +114,7 @@ class Temp_transaksi extends CI_Model
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
         $this->inisial_donatur = $data['inisial_donatur'];
 
-        $this->saldo = $this->debit - $this->kredit;
+        $this->saldo = $this->kredit - $this->debit;
         if($this->saldo >=0){
             $this->id_jenistransaksi = 1;
         }
@@ -130,7 +135,7 @@ class Temp_transaksi extends CI_Model
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
         $this->inisial_donatur = $data['inisial_donatur'];
 
-        $this->saldo = $this->debit - $this->kredit;
+        $this->saldo = $this->kredit - $this->debit;
         if($this->saldo >=0){
             $this->id_jenistransaksi = 1;
         }
@@ -151,7 +156,7 @@ class Temp_transaksi extends CI_Model
         $this->tanggal = date("Y-m-d", strtotime($data['tanggal']));
         $this->inisial_donatur = $data['inisial_donatur'];
 
-        $this->saldo = $this->debit - $this->kredit;
+        $this->saldo = $this->kredit - $this->debit;
         if($this->saldo >=0){
             $this->id_jenistransaksi = 1;
         }

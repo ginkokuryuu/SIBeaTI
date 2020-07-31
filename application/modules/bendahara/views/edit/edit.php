@@ -4,6 +4,18 @@
 <?php $this->load->view('forms/pecahTrans'); ?>
 <?php $this->load->view('forms/transferTrans'); ?>
 
+<?php
+function changeNegNumber($number){
+    if($number < 0){
+        $number = abs($number);
+        return "(" . $number . ")";
+    }
+    else{
+        return $number;
+    }
+}
+?>
+
 <div style="margin-left:5%; margin-right:5%;">
     <table class="table table-light">
     <thead class="thead-dark">
@@ -28,7 +40,7 @@
             <td class='deskripsi'><?php echo $data->deskripsi; ?></td>
             <td class='debit'><?php echo $data->debit; ?></td>
             <td class='kredit'><?php echo $data->kredit; ?></td>
-            <td class='saldo'><?php echo $data->saldo; ?></td>
+            <td class='saldo'><?php echo changeNegNumber($data->saldo); ?></td>
             <td class='periode'><?php echo $data->periode; ?></td>
             <td class='jenis_trans'><?php echo $data->jenis_transaksi; ?></td>
             <td class='akun'><?php echo $data->akun; ?></td>

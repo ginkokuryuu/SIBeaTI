@@ -40,5 +40,10 @@
                 <i class="fas fa-fw fa-edit"></i>
                 <span>List Donatur</span></a>
         </li>
+        <li class="nav-item <?php echo $this->uri->segment(2) == 'rekap' ? 'active': '' ?>">
+            <a class="nav-link" href="<?php echo site_url('bendahara/rekap') ?>">
+                <i class="fas fa-fw fa-edit"></i>
+                <span>Rekapitulasi</span></a>
+        </li>
     <?php endif; ?>
 </ul>
