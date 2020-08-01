@@ -156,7 +156,7 @@ class Biodata_model extends CI_Model
         	$config['allowed_types']        = 'jpeg|jpg|png';
         	$config['file_name']            = 'foto_'.$username;
 		$config['overwrite']			= true;
-		$config['max_size']             = 1024; // 1MB
+		$config['max_size']             = 5120; // 5MB
 
 		$this->load->library('upload', $config);
 
@@ -173,7 +173,7 @@ class Biodata_model extends CI_Model
         	$config['allowed_types']        = 'jpeg|jpg|png';
         	$config['file_name']            = 'rumah_'.$username;
 		$config['overwrite']			= true;
-		$config['max_size']             = 1024; // 1MB
+		$config['max_size']             = 5120; // 5MB
 
 		$this->load->library('upload', $config);
 

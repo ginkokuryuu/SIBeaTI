@@ -43,7 +43,10 @@
                         <div class="form-group row px-3 py-2">
                             <label for="attachment" class="col-sm-3 col-form-label">Attachment</label>
                             <div class="col-sm-9">
-                                <input class="form-control-file <?php echo form_error('attachment') ? 'is-invalid':'' ?>" type="file" name="attachment" /> 
+                                <input class="form-control-file <?php echo form_error('attachment') ? 'is-invalid':'' ?>" type="file" name="attachment" />
+                                <div class="pt-1">
+                                    <p class="text-muted">Max. file size: 50MB</p>
+                                </div>  
                                 <div class="pt-3">
                                     <!-- show attachment if exist and you can delete old attachment-->
                                     <?php if (!empty($berita->attachment)) : ?>

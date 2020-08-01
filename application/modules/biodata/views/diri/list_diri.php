@@ -62,7 +62,7 @@
                                                 <?php echo form_error('foto') ?>
                                             </div>
 											<div class="pt-1">
-                                                <p class="text-muted">Max. file size: 1MB, *.jpeg, *.jpg, *.png</p>
+                                                <p class="text-muted">Max. file size: 5MB, *.jpeg, *.jpg, *.png</p>
                                             </div>
                                         </div>
                                     </div>
@@ -252,7 +252,7 @@
                                                     <div class="col-sm-9">
                                                         <input class="form-control-file <?php echo form_error('foto_rumah') ? 'is-invalid':'' ?>" type="file" name="foto_rumah" required/>
                                                         <div class="pt-1">
-                                                			<p class="text-muted">Max. file size: 1MB, *.jpeg, *.jpg, *.png</p>
+                                                			<p class="text-muted">Max. file size: 5MB, *.jpeg, *.jpg, *.png</p>
                                             			</div>
 														<input type="hidden" name="old_image2" value="<?php echo $biodata->foto_rumah ?>" />
                                                         <div class="pt-4">

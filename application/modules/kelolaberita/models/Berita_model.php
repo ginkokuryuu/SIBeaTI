@@ -40,7 +40,11 @@ class Berita_model extends CI_Model
 		$this->isi_berita = $post["isi_berita"];
         $this->tanggal_berita = date('Y-m-d H:i:s');
         $filename = $_FILES["attachment"]["name"];
-        $this->attachment = $this->_uploadFile($filename);
+        if ($filename) {        // ada file yg di upload user
+            $this->attachment = $this->_uploadFile($filename);
+        } else {
+            $this->attachment = null;
+        }
         $this->db->insert($this->_table, $this);
     }
 
@@ -86,7 +90,7 @@ class Berita_model extends CI_Model
         $config['upload_path']          = './uploads/berita/';
         $config["file_name"]            = $filename;
         $config['overwrite']			= true;
-        $config['max_size']             = 20480; // 20MB
+        $config['max_size']             = 51200; // 50MB
 
         $this->load->library('upload', $config);
 
