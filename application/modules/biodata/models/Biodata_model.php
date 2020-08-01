@@ -153,8 +153,8 @@ class Biodata_model extends CI_Model
     private function _uploadImage($username)
 	{
 		$config['upload_path']          = './images/foto/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['file_name']            = 'foto_'.$username;
+        	$config['allowed_types']        = 'jpeg|jpg|png';
+        	$config['file_name']            = 'foto_'.$username;
 		$config['overwrite']			= true;
 		$config['max_size']             = 1024; // 1MB
 
@@ -170,8 +170,8 @@ class Biodata_model extends CI_Model
     private function _uploadImage2($username)
 	{
 		$config['upload_path']          = './images/rumah/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['file_name']            = 'rumah_'.$username;
+        	$config['allowed_types']        = 'jpeg|jpg|png';
+        	$config['file_name']            = 'rumah_'.$username;
 		$config['overwrite']			= true;
 		$config['max_size']             = 1024; // 1MB
 
