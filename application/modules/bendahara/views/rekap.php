@@ -88,7 +88,7 @@ function saldoBerjalan($transaksi){
             <?php $count = 0;
             foreach($periodikPeriode as $perPeriod): ?>
             <tr class="text-right">
-                <td class="text-center" style="border-style: solid; <?php echo $count == $periodikCount ? 'background: yellow;': '' ?>" scope="col"><?php echo $perPeriod->periode; ?></td>
+                <td class="text-center" style="border-style: solid; <?php echo $count == $periodikCount ? 'background: yellow;': '' ?>" scope="col"><?php echo $perPeriod->nama_periode; ?></td>
                 <td style="border-style: solid; <?php echo $count == $periodikCount ? 'background: yellow;': '' ?>" scope="col"><?php echo $perPeriod->jumlah_donasi; ?></td>
                 <td style="border-style: solid; <?php echo $count == $periodikCount ? 'background: yellow;': '' ?>" scope="col"><?php echo $perPeriod->nominal_donasi; ?></td>
                 <td style="border-style: solid; <?php echo $count == $periodikCount ? 'background: yellow;': '' ?>" scope="col"><?php echo $perPeriod->jumlah_penerima; ?></td>

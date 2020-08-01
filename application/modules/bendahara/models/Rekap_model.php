@@ -79,13 +79,14 @@ class Rekap_model extends CI_Model
 
     public function getPeriodikPeriode($activePeriode){
         $sql = "select
-        periode,
+        periode, periode.nama as nama_periode,
         IFNULL((select count(y.id) from transaksi y where y.periode=x.periode and y.id_jenistransaksi='1' and y.id_kategori='1' and y.id_akun='2'), 0) as jumlah_donasi,
         IFNULL((select sum(y.saldo) from transaksi y where y.periode=x.periode and y.id_jenistransaksi='1' and y.id_kategori='1' and y.id_akun='2'), 0) as nominal_donasi,
         IFNULL((select count(y.id) from transaksi y where y.periode=x.periode and y.id_jenistransaksi='2' and y.id_kategori='4' and y.id_akun='2'), 0) as jumlah_penerima,
         IFNULL((select sum(y.saldo) from transaksi y where y.periode=x.periode and y.id_jenistransaksi='2' and y.id_kategori='4' and y.id_akun='2'), 0) as nominal_penyaluran,
         IFNULL((select sum(y.saldo) from transaksi y where y.periode=x.periode and y.id_kategori='3'), 0) as lain_lain
         from transaksi x
+        left join periode on periode.id = x.periode
         where substring(x.periode,1,4)=substring(?,1,4) and x.periode<=?
         group by periode;";
 
