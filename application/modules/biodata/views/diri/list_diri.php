@@ -103,11 +103,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6 px-3">
                                                 <label for="semester">Semester<span style="color: red;">*</span></label>
-                                                <input type="text" class="form-control" id="semester" name="semester" placeholder="Semester" value="<?php echo $biodata->semester ?? '' ?>" required>
+                                                <input type="number" class="form-control" id="semester" name="semester" placeholder="Semester" value="<?php echo $biodata->semester ?? '' ?>" required>
                                                 </div>
                                                 <div class="form-group col-md-6 px-3">
                                                 <label for="ipk">IPK<span style="color: red;">*</span></label>
-                                                <input type="text" class="form-control" id="ipk" name="ipk" placeholder="IPK" value="<?php echo $biodata->ipk ?? '' ?>" required>
+                                                <input type="number" step=0.01 class="form-control" id="ipk" name="ipk" placeholder="IPK" value="<?php echo $biodata->ipk ?? '' ?>" required>
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -123,7 +123,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6 px-3">
                                                 <label for="ukt">UKT<span style="color: red;">*</span></label>
-                                                <input type="text" class="form-control" id="ukt" name="ukt" placeholder="UKT" value="<?php echo number_format($biodata->ukt) ?? '' ?>" required>
+                                                <input type="number" class="form-control" id="ukt" name="ukt" placeholder="UKT" value="<?php echo number_format($biodata->ukt) ?? '' ?>" required>
                                                 </div>
                                                 <div class="form-group col-md-6 px-3">
                                                 <label for="nama_bank">Nama Bank<span style="color: red;">*</span></label>
@@ -166,7 +166,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6 px-3">
                                                     <label for="nilai_beasiswa">Nilai Beasiswa</label>
-                                                    <input type="text" class="form-control" id="nilai_beasiswa" name="nilai_beasiswa" placeholder="Nilai Beasiswa Lain" value="<?php echo number_format($biodata->nilai_beasiswa) ?? '' ?>">
+                                                    <input type="number" class="form-control" id="nilai_beasiswa" name="nilai_beasiswa" placeholder="Nilai Beasiswa Lain" value="<?php echo number_format($biodata->nilai_beasiswa) ?? '' ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -204,7 +204,7 @@
                                                 <div class="form-group row px-3 py-2">
                                                     <label for="penghasilan_ortu" class="col-sm-4 col-form-label">Penghasilan Orang Tua<span style="color: red;">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="penghasilan_ortu" name="penghasilan_ortu" placeholder="Penghasilan Orang Tua" value="<?php echo number_format($biodata->penghasilan_ortu) ?? '' ?>" required>
+                                                        <input type="number" class="form-control" id="penghasilan_ortu" name="penghasilan_ortu" placeholder="Penghasilan Orang Tua" value="<?php echo number_format($biodata->penghasilan_ortu) ?? '' ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
