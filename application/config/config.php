@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://sibeati.local:7777/';
+$config['base_url'] = 'http://localhost:7777/sibeati/';
 
 /*
 |--------------------------------------------------------------------------
@@ -533,4 +533,4 @@ $config['proxy_ips'] = '';
 |
 */
 
-$config['modules_locations'] = array(APPPATH . 'modules/');
+$config['modules'] = array(APPPATH . 'modules/');
