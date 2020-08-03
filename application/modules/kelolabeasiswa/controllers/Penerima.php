@@ -30,8 +30,8 @@ class Penerima extends CI_Controller
 
         error_reporting(0);
  
-        $pdf = new FPDF('L', 'mm','A4');
-        $pdf->SetLeftMargin(31);
+        $pdf = new FPDF('P', 'mm','A4');
+        $pdf->SetMargins(40,20, 40);
         $pdf->AddPage();
  
         $pdf->SetFont('Arial','B',16);
@@ -41,20 +41,15 @@ class Penerima extends CI_Controller
         $pdf->Cell(10,10,'',0,1);
  
         $pdf->Cell(10,7,'No',1,0,'C');
-        $pdf->Cell(35,7,'NRP',1,0,'C');
-        $pdf->Cell(60,7,'Nama Lengkap',1,0,'C');
-        $pdf->Cell(35,7,'Nama Bank',1,0,'C');
-        $pdf->Cell(35,7,'Nomor Rekening',1,0,'C');
-        $pdf->Cell(60,7,'Nama Rekening',1,1,'C');
+        $pdf->Cell(40,7,'NRP',1,0,'C');
+        $pdf->Cell(80,7,'Nama Lengkap',1,1,'C');
  
         $pdf->SetFont('Arial','',10);
         foreach ($penerima as $key=>$data){
             $pdf->Cell(10,7,$key + 1,1,0, 'C');
-            $pdf->Cell(35,7,$data->nrp,1,0, 'C');
-            $pdf->Cell(60,7,$data->nama_lengkap,1,0);
-            $pdf->Cell(35,7,$data->nama_bank,1,0, 'C');
-            $pdf->Cell(35,7,$data->no_rekening,1,0, 'C');
-            $pdf->Cell(60,7,$data->nama_rekening,1,1);
+            $pdf->Cell(40,7,$data->nrp,1,0, 'C');
+            $pdf->Cell(2,7,'', 'LTB');
+            $pdf->Cell(78,7,$data->nama_lengkap,'TRB',1);
         }
         $filename = 'Penerima ' . ucwords($beasiswa->nama) .' Tahun '.$beasiswa->tahun.' Periode '.$beasiswa->periode;
         $pdf->Output('I', $filename);

@@ -50,7 +50,7 @@
                                     <td class="td-center">
                                         <?php echo $penerima->no_rekening ?>
                                     </td>
-                                    <td class="td-center">
+                                    <td>
                                         <?php echo $penerima->nama_rekening ?>
                                     </td>
                                 </tr>
