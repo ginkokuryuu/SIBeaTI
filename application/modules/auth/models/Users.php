@@ -33,10 +33,17 @@ class Users extends CI_Model{
 
     public function save($data)
     {
-        $this->username = $data["username"];
-        $this->password = password_hash($data["password"], PASSWORD_DEFAULT);
-        $this->role = $data["role"];
-        return $this->db->insert($this->_table, $this);
+        $this->db->where('username', $data["username"]);
+        $user = $this->db->get($this->_table)->row();
+        if($user){
+            return -1;
+        }
+        else{
+            $this->username = $data["username"];
+            $this->password = password_hash($data["password"], PASSWORD_DEFAULT);
+            $this->role = $data["role"];
+            return $this->db->insert($this->_table, $this);
+        }
     }
 
     public function update()
