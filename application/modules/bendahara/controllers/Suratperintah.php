@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SuratPerintah extends CI_Controller {
+class Suratperintah extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -33,7 +33,7 @@ class SuratPerintah extends CI_Controller {
 			'datas' => $datas,
 			'periode'=>$periode,
 		);
-        $this->template->load("dashboard/template", "suratperintah/SuratPerintah", "Print Surat Perintah", $data);
+        $this->template->load("dashboard/template", "suratperintah/suratPerintah", "Print Surat Perintah", $data);
 		//load("dashboard/template", "viewFolder/view", "Header")
 	}
 	
