@@ -36,7 +36,7 @@ class Users extends CI_Model{
         $this->db->where('username', $data["username"]);
         $user = $this->db->get($this->_table)->row();
         if($user){
-            return -1;
+            return 0;
         }
         else{
             $this->username = $data["username"];
