@@ -22,6 +22,7 @@ class Defpage extends CI_Controller {
 	{
 		if($this->session->has_userdata('username')){
 			$role = $this->session->userdata('role');
+			$id = $this->session->userdata('user_id');
 			$data = array();
 			if($role == 'mahasiswa'){
 				$berita = $this->load->model('kelolaberita/berita_model', 'berita');
