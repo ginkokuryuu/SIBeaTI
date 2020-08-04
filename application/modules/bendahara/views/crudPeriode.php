@@ -24,7 +24,7 @@
                         <input type="text" name="deskripsi" id="deskripsi" placeholder="Deskripsi" value='<?php echo $periode->deskripsi; ?>'></input>
                     </td>
                     <td>
-                        <input type="text" name="status" id="status" placeholder="Status" value='<?php echo $periode->nama; ?>'></input>
+                        <input type="text" name="status" id="status" placeholder="Status" value='<?php echo $periode->status; ?>'></input>
                     </td>
                     <td>
                         <input type="submit" name="Save" id="submit" class='btn btn-primary'></input>
