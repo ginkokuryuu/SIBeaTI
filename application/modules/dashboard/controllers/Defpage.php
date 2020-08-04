@@ -24,11 +24,30 @@ class Defpage extends CI_Controller {
 			$role = $this->session->userdata('role');
 			$data = array();
 			if($role == 'mahasiswa'){
-				$berita = $this->load->model('Berita_model', 'berita');
+				$berita = $this->load->model('kelolaberita/berita_model', 'berita');
 				$data['berita'] = $this->berita->getAll();
+				$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
 			}
 
-			$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
+			else  if($role == 'voter'){
+				$pendaftar = $this->load->model('Pendaftar_model', 'pendaftar');
+				$data['pendaftar'] = $this->pendaftar->getAll();
+				$data['calon'] = $this->pendaftar->getCalon($id); 
+				$data['beasiswa'] = $this->pendaftar->getBeasiswa();
+				$this->template->load('templatevoter', 'role/' . $role, 'Dashboard', $data);
+			}
+			
+			else if($role == 'selektor'){
+				$calon = $this->load->model('Calon_model', 'calon');
+				$data['calon'] = $this->calon->getAll();
+				$data['beasiswa'] = $this->calon->getBeasiswa();
+				$data['penerima'] = $this->calon->getPenerima();
+				$this->template->load('templateselektor', 'role/' . $role, 'Dashboard', $data);
+			}
+			else{
+				$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
+			}
+
 		}
 		else{
 			redirect(site_url('auth'));

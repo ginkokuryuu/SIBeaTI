@@ -24,7 +24,8 @@ date_default_timezone_set("Asia/Jakarta");
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://sibeati.local:7777/';
+$config['base_url'] = 'http://localhost:7777/sibeati/';
+// $config['base_url'] = 'https://www.its.ac.id/informatika/beasiswa-test/';
 
 /*
 |--------------------------------------------------------------------------
@@ -534,4 +535,4 @@ $config['proxy_ips'] = '';
 |
 */
 
-$config['modules_locations'] = array(APPPATH . 'modules/');
+$config['modules'] = array(APPPATH . 'modules/');

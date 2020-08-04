@@ -40,8 +40,4 @@ class Defpage extends CI_Controller {
 		$this->session->unset_userdata($param);
 		redirect(site_url('auth'));
 	}
-
-	public function test(){
-		$this->template->load('template', 'login/test', 'test');
-	}
 }
