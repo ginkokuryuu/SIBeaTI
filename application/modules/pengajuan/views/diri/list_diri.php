@@ -5,6 +5,11 @@
     <style type="text/css">
         .img-rounded {
             border-radius: 50%!important;
+            object-fit: cover;
+        }
+        .img-squared {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -114,7 +119,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-6 px-3">
                                                 <label for="ukt">UKT<span style="color: red;">*</span></label>
-                                                <input type="text" class="form-control" id="ukt" name="ukt" placeholder="" value="<?php echo number_format($biodata->ukt) ?? '' ?>" required readonly>
+                                                <input type="text" class="form-control" id="ukt" name="ukt" placeholder="" value="<?php echo $biodata->ukt ?? '' ?>" required readonly>
                                                 </div>
                                                 <div class="form-group col-md-6 px-3">
                                                 <label for="nama_bank">Nama Bank<span style="color: red;">*</span></label>
@@ -142,7 +147,7 @@
                                                 </div>
                                                 <div class="form-group col-md-6 px-3">
                                                     <label for="nilai_beasiswa">Nilai Beasiswa</label>
-                                                    <input type="text" class="form-control" id="nilai_beasiswa" name="nilai_beasiswa" placeholder="" value="<?php echo number_format($biodata->nilai_beasiswa) ?? '' ?>" readonly>
+                                                    <input type="text" class="form-control" id="nilai_beasiswa" name="nilai_beasiswa" placeholder="" value="<?php echo $biodata->nilai_beasiswa ?? '' ?>" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +181,7 @@
                                                 <div class="form-group row px-3 py-2">
                                                     <label for="penghasilan_ortu" class="col-sm-4 col-form-label">Penghasilan Orang Tua<span style="color: red;">*</span></label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="penghasilan_ortu" name="penghasilan_ortu" placeholder="" value="<?php echo number_format($biodata->penghasilan_ortu) ?? '' ?>" required readonly>
+                                                        <input type="text" class="form-control" id="penghasilan_ortu" name="penghasilan_ortu" placeholder="" value="<?php echo $biodata->penghasilan_ortu ?? '' ?>" required readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,7 +224,7 @@
                                                         <div class="pt-3">
                                                             <!-- show foto_rumah if exist -->
                                                             <?php if (!empty($biodata->foto_rumah)) : ?>
-                                                            <img src="<?php echo base_url('images/rumah/' .$biodata->foto_rumah) ?>" width="500" height="300">
+                                                            <img src="<?php echo base_url('images/rumah/' .$biodata->foto_rumah) ?>" width="500" height="300" class="img-squared">
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>

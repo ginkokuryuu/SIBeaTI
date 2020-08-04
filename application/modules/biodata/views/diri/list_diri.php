@@ -125,8 +125,8 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-6 px-3">
-                                                <label for="ukt">UKT<span style="color: red;">*</span></label>
-                                                <input type="number" class="form-control" id="ukt" name="ukt" placeholder="UKT" value="<?php echo number_format($biodata->ukt) ?? '' ?>" required>
+                                                <label for="ukt">UKT<span style="color: red;">*</span> <span class="text-muted">(contoh: 5000000)</span></label>
+                                                <input type="text" class="form-control" id="ukt" name="ukt" placeholder="UKT" value="<?php echo $biodata->ukt ?? '' ?>" required>
                                                 </div>
                                                 <div class="form-group col-md-6 px-3">
                                                 <label for="nama_bank">Nama Bank<span style="color: red;">*</span></label>
@@ -168,8 +168,8 @@
                                                     <input type="text" class="form-control" id="nama_beasiswa" name="nama_beasiswa" placeholder="Nama Beasiswa Lain" value="<?php echo $biodata->nama_beasiswa ?? '' ?>">
                                                 </div>
                                                 <div class="form-group col-md-6 px-3">
-                                                    <label for="nilai_beasiswa">Nilai Beasiswa</label>
-                                                    <input type="number" class="form-control" id="nilai_beasiswa" name="nilai_beasiswa" placeholder="Nilai Beasiswa Lain" value="<?php echo number_format($biodata->nilai_beasiswa) ?? '' ?>">
+                                                    <label for="nilai_beasiswa">Nilai Beasiswa <span class="text-muted">(contoh: 5000000)</span></label>
+                                                    <input type="text" class="form-control" id="nilai_beasiswa" name="nilai_beasiswa" placeholder="Nilai Beasiswa Lain" value="<?php echo $biodata->nilai_beasiswa ?? '' ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -205,9 +205,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row px-3 py-2">
-                                                    <label for="penghasilan_ortu" class="col-sm-4 col-form-label">Penghasilan Orang Tua<span style="color: red;">*</span></label>
+                                                    <label for="penghasilan_ortu" class="col-sm-4 col-form-label">Penghasilan Orang Tua<span style="color: red;">*</span>  <div class="text-muted">(contoh: 5000000)</div></label>
                                                     <div class="col-sm-8">
-                                                        <input type="number" class="form-control" id="penghasilan_ortu" name="penghasilan_ortu" placeholder="Penghasilan Orang Tua" value="<?php echo number_format($biodata->penghasilan_ortu) ?? '' ?>" required>
+                                                        <input type="text" class="form-control" id="penghasilan_ortu" name="penghasilan_ortu" placeholder="Penghasilan Orang Tua" value="<?php echo $biodata->penghasilan_ortu ?? '' ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
