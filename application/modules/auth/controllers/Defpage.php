@@ -8,7 +8,7 @@ class Defpage extends CI_Controller {
 		if($this->session->has_userdata('username')){
 			redirect(site_url('dashboard'));
 		}		
-		$this->template->load('template', 'login/index', "Login Admin");
+		$this->template->load('template', 'login/index', "Login");
 	}
 
 	public function login(){

@@ -49,5 +49,5 @@
 
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword; // password yg dimasukkan harus ssesuai
-    old_password.onchange = validateUsername;       // old_password untuk mahasiswa berupa nrp dgn panjang 14
+    old_password.onchange = validateUsername;       
 </script>
