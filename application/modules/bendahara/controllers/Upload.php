@@ -126,7 +126,7 @@ class Upload extends CI_Controller {
             }
             else{
                 $error = array('error' => $this->upload->display_errors());
-                echo "<script>
+		echo "<script>
                     alert('upload gagal');
                     window.location='".site_url('bendahara/upload/')."';
                     </script>";
