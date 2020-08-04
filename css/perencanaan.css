@@ -1,0 +1,17 @@
+.content{
+    margin-left:5%; 
+    margin-right:5%;
+}
+table, td, tr{
+    border: 1px solid #252525; 
+
+}
+td,tr{
+    padding:0px 5px;
+}
+.table-list {
+    width:500px;
+}
+th{
+    background-color: #979797;
+}

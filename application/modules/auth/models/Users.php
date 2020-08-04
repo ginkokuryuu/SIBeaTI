@@ -67,6 +67,7 @@ class Users extends CI_Model{
             $param['username'] = $user->username;
             $param['role'] = $user->role;
             $param['user_id'] = $user->user_id;
+            $param['verified'] = $user->verified;
 		}
 		return $param;
     }
@@ -94,5 +95,17 @@ class Users extends CI_Model{
         else{
             return 0;
         }
+    }
+
+    public function verify($id){
+        $sql = 'update users set verified=1 where user_id=?;';
+
+        $this->db->query($sql, [$id]);
+    }
+
+    public function getUnverified(){
+        $sql = "select * from users where (role='bendahara' or role='selektor') and verified=0;";
+
+        return $this->db->query($sql)->result();
     }
 }

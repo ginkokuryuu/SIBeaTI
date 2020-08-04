@@ -13,14 +13,31 @@ class Defpage extends CI_Controller {
 
 	public function login(){
 		$this->load->model('users');
+		$isSuccess = FALSE;
 
 		$data = $this->input->post(null, TRUE);
 		if(isset($data['login'])){
 			$param = $this->users->doLogin($data);
 			if($param['status']){
-				//login berhasil
-				$this->session->set_userdata($param);
-				redirect(site_url('dashboard'));
+				if($param['role'] != 'mahasiswa' and $param['role'] != 'voter'){
+					if($param['verified'] == 1){
+						//login berhasil
+						$this->session->set_userdata($param);
+						redirect(site_url('dashboard'));
+					}
+					else{
+						//login gagal
+						echo "<script>
+						alert('Maaf, belum terverifikasi');
+						window.location='".site_url('auth')."';
+						</script>";
+					}
+				}
+				else{
+					//login berhasil
+					$this->session->set_userdata($param);
+					redirect(site_url('dashboard'));
+				}
 			}
 			else{
 				//login gagal
@@ -39,9 +56,5 @@ class Defpage extends CI_Controller {
 		);
 		$this->session->unset_userdata($param);
 		redirect(site_url('auth'));
-	}
-
-	public function test(){
-		$this->template->load('template', 'login/test', 'test');
 	}
 }

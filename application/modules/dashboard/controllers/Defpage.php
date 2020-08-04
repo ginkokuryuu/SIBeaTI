@@ -45,7 +45,10 @@ class Defpage extends CI_Controller {
 				$data['penerima'] = $this->calon->getPenerima();
 				$this->template->load('templateselektor', 'role/' . $role, 'Dashboard', $data);
 			}
-			
+			else{
+				$this->template->load('template', 'role/' . $role, 'Dashboard', $data);
+			}
+
 		}
 		else{
 			redirect(site_url('auth'));
