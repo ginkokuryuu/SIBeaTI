@@ -19,7 +19,7 @@ class Defpage extends CI_Controller {
 		if(isset($data['login'])){
 			$param = $this->users->doLogin($data);
 			if($param['status']){
-				if($param['role'] != 'mahasiswa' and $param['role'] != 'voter'){
+				if($param['role'] != 'mahasiswa'){
 					if($param['verified'] == 1){
 						//login berhasil
 						$this->session->set_userdata($param);

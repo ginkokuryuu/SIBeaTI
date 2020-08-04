@@ -104,7 +104,7 @@ class Users extends CI_Model{
     }
 
     public function getUnverified(){
-        $sql = "select * from users where (role='bendahara' or role='selektor') and verified=0;";
+        $sql = "select * from users where not role='mahasiswa' and verified=0;";
 
         return $this->db->query($sql)->result();
     }
