@@ -5,7 +5,6 @@
         <select name="report" id="report" onChange="laporanSpinner(this);">
             <option value="none" selected disabled hidden>pilih jenis laporan</option>
             <option value="neraca">Neraca</option>
-            <option value="laporan-bulanan">Laporan Bulanan</option>
             <option value="copy-text">Ringkasan</option>
         </select>
         <div class="report-content" id="periode" style='display:none;'>
