@@ -9,23 +9,21 @@ class Download extends CI_Controller {
 	}
  
 	public function index($fileName = NULL){
-        $role = $this->session->userdata('role');		
-        if ($fileName) {
-            $file = realpath("uploads\berita") . "\\" . $fileName;
-            // check file exists    
-            if (file_exists($file)) {
-                // get file content
-                $data = file_get_contents($file);
-                //force download
-                force_download($fileName, $data);
-                if ($role == 'mahasiswa'){
-                    redirect(site_url('dashboard/role/' . $role));
-                }
-                elseif ($role == 'selektor'){
-                    redirect(site_url('kelolaberita/berita'));
-                }
-            }
-        }
+		$role = $this->session->userdata('role');		
+		if ($fileName) {
+		    $file = base_url("uploads/berita") . "/" . $fileName;
+
+		    // get file content
+		    $data = file_get_contents($file);
+		    //force download
+		    force_download($fileName, $data);
+		    if ($role == 'mahasiswa'){
+			redirect(site_url('dashboard/role/' . $role));
+		    }
+		    elseif ($role == 'selektor'){
+			redirect(site_url('kelolaberita/berita'));
+		    }
+		}
 	}
  
 }
