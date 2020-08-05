@@ -42,7 +42,7 @@ class Suratperintah extends CI_Controller {
         $this->load->library('pdf');
     }
     
-    function DownloadLaporan(){
+    function downloadLaporan(){
 		$data = $this->input->post(null, TRUE);
 		$dummy=array
 		  (
