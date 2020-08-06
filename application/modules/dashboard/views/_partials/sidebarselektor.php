@@ -18,4 +18,10 @@
             <i class="fas fa-fw fa-graduation-cap"></i>
             <span>Kelola Beasiswa</span></a>
     </li>
+
+    <li class="nav-item <?php echo $this->uri->segment(2) == 'verify' ? 'active': '' ?>">
+        <a class="nav-link" href="<?php echo site_url('auth/verify') ?>">
+            <i class="fas fa-fw fa-edit"></i>
+            <span>Verify Akun</span></a>
+    </li>
 </ul>

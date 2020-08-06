@@ -5,7 +5,7 @@ class Verify extends CI_Controller {
 
 	public function index()
 	{
-        if($this->session->userdata('role') != "bendahara"){
+        if($this->session->userdata('role') == "mahasiswa" or $this->session->userdata('role') == "voter"){
             echo "<script>
 				alert('Maaf anda tidak berhak');
 				window.location='".site_url('dashboard')."';
@@ -23,7 +23,7 @@ class Verify extends CI_Controller {
 	}
 
 	public function verif(){
-        if($this->session->userdata('role') != "bendahara"){
+        if($this->session->userdata('role') == "mahasiswa" or $this->session->userdata('role') == "voter"){
             echo "<script>
 				alert('Maaf anda tidak berhak');
 				window.location='".site_url('dashboard')."';
