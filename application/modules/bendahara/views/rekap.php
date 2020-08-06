@@ -42,6 +42,7 @@ function saldoBerjalan($transaksi){
                 <th style="border-style: solid; color: darkslategrey;" scope="col">Lain2</th>
             </tr>
         </thead>
+        <?php if($dataFetch): ?>
         <tbody>
             <?php $lastKumulatif = null;
             $count = 0;
@@ -107,5 +108,6 @@ function saldoBerjalan($transaksi){
             <?php $count++;
             endforeach ?>
         </tbody>
+        <?php endif; ?>
     </table>
 </div>
