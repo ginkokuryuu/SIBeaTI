@@ -63,11 +63,19 @@ class Perencanaan extends CI_Controller {
             $this->load->model('rekap_model');
 
             $activePeriode = $this->rekap_model->getActivePeriode();
-            $saldoSekarang = $this->perencanaan_model->getSaldo($activePeriode->id);
+            if($activePeriode){
+                $saldoSekarang = $this->perencanaan_model->getSaldo($activePeriode->id);
+                $data = array(
+                    'saldoSekarang' => $saldoSekarang[0]->saldo_berjalan
+                );
+            }
+            else{
+                $data = array(
+                    'saldoSekarang' => 0
+                );
+            }
 
-            $data = array(
-                'saldoSekarang' => $saldoSekarang[0]->saldo_berjalan
-            );
+            
 
             $this->template->load('dashboard/template', 'perencanaan/calculator', 'Kalkulator Perencanaan', $data);
         }
