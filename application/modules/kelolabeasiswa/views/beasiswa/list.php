@@ -56,7 +56,6 @@
                                     <td class="td-center">
 										<a href="" data-toggle="collapse" data-target="#detailBeasiswa<?php echo $beasiswa->beasiswa_id ?>" class="btn btn-sm text-dark"><i class="fas fa-plus"></i> Detail</a>
                                         <a href="<?php echo site_url('kelolabeasiswa/beasiswa/edit/'.$beasiswa->beasiswa_id) ?>" class="btn btn-sm"><i class="fas fa-edit"></i> Edit</a>
-										<a onclick="deleteConfirm('<?php echo site_url('kelolabeasiswa/beasiswa/delete/'.$beasiswa->beasiswa_id) ?>')" href="#!" class="btn btn-sm text-danger"><i class="fas fa-trash"></i> Hapus</a>
                                     </td>
 								</tr>				
 								<tr class="bg-light">
