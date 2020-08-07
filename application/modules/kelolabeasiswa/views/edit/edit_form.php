@@ -63,14 +63,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-6 px-3">
                         <label for="kuota_beasiswa">Kuota Beasiswa<span style="color: red;">*</span></label>
-                        <input class="form-control <?php echo form_error('kuota_beasiswa') ? 'is-invalid':'' ?>" type="text" name="kuota_beasiswa" value="<?php echo $beasiswa->kuota_beasiswa ?>" required/>
+                        <input class="form-control <?php echo form_error('kuota_beasiswa') ? 'is-invalid':'' ?>" type="number" name="kuota_beasiswa" value="<?php echo $beasiswa->kuota_beasiswa ?>" required/>
                         <div class="invalid-feedback">
                             <?php echo form_error('kuota_beasiswa') ?>
                         </div>
                         </div>
                         <div class="form-group col-md-6 px-3">
                         <label for="kuota_vote">Kuota Vote<span style="color: red;">*</span></label>
-                        <input class="form-control <?php echo form_error('kuota_vote') ? 'is-invalid':'' ?>" type="text" name="kuota_vote" value="<?php echo $beasiswa->kuota_vote ?>" required />
+                        <input class="form-control <?php echo form_error('kuota_vote') ? 'is-invalid':'' ?>" type="number" name="kuota_vote" value="<?php echo $beasiswa->kuota_vote ?>" required />
                         <div class="invalid-feedback">
                             <?php echo form_error('kuota_vote') ?>
                         </div>
