@@ -88,9 +88,12 @@ class Upload extends CI_Controller {
 
                 if($check == 0){
                     foreach($datas as $data){
-                        if($data['Tanggal'] == ""){
-                            $check = 2;
+                        if($data['Tanggal'] != ""){
+                            $check = 0;
                             break;
+                        }
+                        else{
+                            $check = 2;
                         }
                     }
     
@@ -101,6 +104,14 @@ class Upload extends CI_Controller {
                             </script>";
                     }
                     else{
+                        $counter = 1;
+                        foreach($datas as $data){
+                            if($data['Tanggal'] == ""){
+                                unset($datas[$counter]);
+                            }
+                            $counter++;
+                        }
+
                         $this->load->model('temp_transaksi');
     
                         foreach($datas as $data){
