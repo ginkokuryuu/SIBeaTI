@@ -15,7 +15,7 @@ function saldoBerjalan($transaksi){
 }
 ?>
 
-<div style='width: 100%; margin-left: 2%; margin-right: 2%;'>
+<div style='width: 100%; margin-left: 2%; margin-right: 2%; overflow: auto;'>
     <table class="table table-light" style='width: 96%;'>
         <thead class="thead-light text-center">
             <tr>
