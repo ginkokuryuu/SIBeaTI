@@ -48,6 +48,8 @@ class Calon_model extends CI_Model
         $this->db->join('pendaftar', 'pendaftar.pendaftar_id = calon.pendaftar_id');
         $this->db->join('biodata', 'biodata.biodata_id = pendaftar.biodata_id');
         $this->db->group_by('pendaftar.pendaftar_id');
+        $this->db->where(['beasiswa.status_pemilihan'=>'Dibuka']);
+        $this->db->group_by('pendaftar.pendaftar_id');
         $query = $this->db->get();
         return $query->result();
     }
