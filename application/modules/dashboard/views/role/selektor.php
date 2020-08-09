@@ -18,7 +18,7 @@
 	<div class="col-md-12 col-lg-12">
         <h1><p style="color:#092147">Calon Penerima</p></h1>
         <h5><p style="color:#092147"><?php echo $beasiswa->nama ?? ''?> Tahun <?php echo $beasiswa->tahun ?? ''?> Periode <?php echo $beasiswa->periode ?? ''?></p></h5>
-        <p style="color:#092147">Kuota penerimaan: <?php echo $beasiswa->kuota_beasiswa?> </p>
+        <p style="color:#092147">Kuota penerimaan: <?php echo $beasiswa->kuota_beasiswa ?? ''?> </p>
         <p style="color:#092147">Telah dipilih: <?php echo count($items)?> </p>
     </div>
 
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <input class="btn btn-primary btn-sm float-right <?php echo $beasiswa->kuota_beasiswa == count($items) ? 'btn-secondary disabled': 'btn-primary' ?>" type="button" name="save_vote" value="Submit" data-toggle="modal" data-target="#submitPenerimaModal" />
+                <input class="btn btn-primary btn-sm float-right <?php if(isset($beasiswa->kuota_beasiswa)) { echo $beasiswa->kuota_beasiswa == count($items) ? 'btn-secondary disabled': 'btn-primary';} ?>" type="button" name="save_vote" value="Submit" data-toggle="modal" data-target="#submitPenerimaModal" />
             </div>
         </div>
     </form>
