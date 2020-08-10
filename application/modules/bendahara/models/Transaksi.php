@@ -198,7 +198,7 @@ class Transaksi extends CI_Model
     }
     
     public function getPeriode(){
-        return $this->db->query('select distinct periode as id, nama, periode.deskripsi as deskripsi from transaksi left join periode ON transaksi.periode=periode.id')->result();
+        return $this->db->query('select distinct periode as id, x.nama as nama, (select y.nama from periode y where y.id=x.id-1) as namasebelum, x.deskripsi as deskripsi from transaksi left join periode x ON transaksi.periode=x.id')->result();
     }
 
     public function getDonatur(){
