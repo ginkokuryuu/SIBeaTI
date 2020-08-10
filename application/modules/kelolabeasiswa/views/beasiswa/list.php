@@ -53,10 +53,10 @@
 									<td class="td-center">
 										<?php echo $beasiswa->status_pemilihan ?>
 									</td>
-                                    					<td class="td-center">
+                                    <td class="td-center">
 										<a href="" data-toggle="collapse" data-target="#detailBeasiswa<?php echo $beasiswa->beasiswa_id ?>" class="btn btn-sm text-dark"><i class="fas fa-plus"></i> Detail</a>
-                                        					<a href="<?php echo site_url('kelolabeasiswa/beasiswa/edit/'.$beasiswa->beasiswa_id) ?>" class="btn btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                                    					</td>
+                                        <a href="<?php echo site_url('kelolabeasiswa/beasiswa/edit/'.$beasiswa->beasiswa_id) ?>" class="btn btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    </td>
 								</tr>				
 								<tr class="bg-light">
 									<td style="padding: 0 !important;"></td>

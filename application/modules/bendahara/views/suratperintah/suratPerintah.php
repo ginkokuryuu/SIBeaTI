@@ -27,7 +27,7 @@
             </table>
         <?php endforeach; ?>
         Surat Perintah Transfer :
-        <form action="<?= site_url('bendahara/SuratPerintah/DownloadLaporan') ?>" method="POST" id='bukaPDF'>
+        <form action="<?= site_url('bendahara/suratperintah/downloadLaporan') ?>" method="POST" id='bukaPDF'>
             <input type="hidden" name='periode' id='formPeriode' value='-'></input>
         </form>
         <button class='btn btn-primary' onclick='openPDF()' style='background-color: gray;'>Print Surat Perintah</button>
