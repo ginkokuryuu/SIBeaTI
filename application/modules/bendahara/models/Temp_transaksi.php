@@ -30,7 +30,7 @@ class Temp_transaksi extends CI_Model
     }
 
     public function getRawNoId(){
-        $this->db->select('deskripsi, debit, kredit, saldo, periode, tanggal, id_jenistransaksi, id_kategori, id_akun');
+        $this->db->select('deskripsi, debit, kredit, saldo, periode, tanggal, id_jenistransaksi, id_kategori, id_akun, inisial_donatur');
         $this->db->from($this->_table);
         $query = $this->db->get();
         return $query->result();

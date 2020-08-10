@@ -33,10 +33,17 @@ class Users extends CI_Model{
 
     public function save($data)
     {
-        $this->username = $data["username"];
-        $this->password = password_hash($data["password"], PASSWORD_DEFAULT);
-        $this->role = $data["role"];
-        return $this->db->insert($this->_table, $this);
+        $this->db->where('username', $data["username"]);
+        $user = $this->db->get($this->_table)->row();
+        if($user){
+            return 0;
+        }
+        else{
+            $this->username = $data["username"];
+            $this->password = password_hash($data["password"], PASSWORD_DEFAULT);
+            $this->role = $data["role"];
+            return $this->db->insert($this->_table, $this);
+        }
     }
 
     public function update()
@@ -104,7 +111,7 @@ class Users extends CI_Model{
     }
 
     public function getUnverified(){
-        $sql = "select * from users where (role='bendahara' or role='selektor') and verified=0;";
+        $sql = "select * from users where not role='mahasiswa' and verified=0;";
 
         return $this->db->query($sql)->result();
     }

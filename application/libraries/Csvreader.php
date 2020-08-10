@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link        http://www.codexworld.com
  * @version     3.0
  */
-class CSVReader {
+class Csvreader {
     
     // Columns names after parsing
     private $fields;

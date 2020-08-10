@@ -205,7 +205,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row px-3 py-2">
-                                                    <label for="penghasilan_ortu" class="col-sm-4 col-form-label">Penghasilan Orang Tua<span style="color: red;">*</span>  <div class="text-muted">(contoh: 5000000)</div></label>
+                                                    <label for="penghasilan_ortu" class="col-sm-4 col-form-label">Penghasilan Orang Tua<span style="color: red;">*</span> <div class="text-muted">(contoh: 5000000)</div></label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control" id="penghasilan_ortu" name="penghasilan_ortu" placeholder="Penghasilan Orang Tua" value="<?php echo $biodata->penghasilan_ortu ?? '' ?>" required>
                                                     </div>
@@ -252,13 +252,13 @@
                                                     <div class="col-sm-9">
                                                         <input class="form-control-file <?php echo form_error('foto_rumah') ? 'is-invalid':'' ?>" type="file" name="foto_rumah" required/>
                                                         <div class="pt-1">
-                                                		<p class="text-muted">Max. file size: 5MB, *.jpeg, *.jpg, *.png</p>
-                                            		</div>
-							<input type="hidden" name="old_image2" value="<?php echo $biodata->foto_rumah ?? ''?>" />
+                                                			<p class="text-muted">Max. file size: 5MB, *.jpeg, *.jpg, *.png</p>
+                                            			</div>
+														<input type="hidden" name="old_image2" value="<?php echo $biodata->foto_rumah ?>" />
                                                         <div class="pt-4">
                                                             <!-- show foto_rumah if exist -->
                                                             <?php if (!empty($biodata->foto_rumah)) : ?>
-                                                            	<img src="<?php echo base_url('images/rumah/' .$biodata->foto_rumah) ?>" width="500" height="300" class="img-squared">
+                                                            <img src="<?php echo base_url('images/rumah/' .$biodata->foto_rumah) ?>" width="500" height="300" class="img-squared">
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>
