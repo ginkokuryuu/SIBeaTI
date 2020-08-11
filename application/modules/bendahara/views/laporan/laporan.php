@@ -109,7 +109,7 @@
                 2. Posisi Keuangan<br/>
                 <?php foreach($counts as $count):?>
                     <?php if($count->periode==$p->id):?>
-                        <?php $format=$count->periodeSebelum; if($format<0) $format=($format*-1);echo "Saldo Akhir Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
+                        <?php $format=$count->periodeSebelum; if($format<0) $format=($format*-1);echo "Saldo Akhir Bulan ".$p->namasebelum." : Rp.".number_format($format, 0, ",", ".");?><br/>
                         <?php $format=$count->penerimaan; if($format<0) $format=($format*-1);echo "Penerimaan Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
                         <?php $format=$count->pengeluaran; if($format<0) $format=($format*-1); echo "Penyaluran Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
                         <?php $format=$count->saldo; if($format<0) $format=($format*-1); echo "Saldo Akhir Bulan ".$p->nama." : Rp.".number_format($format, 0, ",", ".");?><br/>
