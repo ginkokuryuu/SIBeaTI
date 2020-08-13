@@ -186,8 +186,6 @@
                                                         <tr class="d-flex">
                                                             <th scope="row">Status rumah</th>
                                                             <td class="pl-2">:</td>
-							</tr>
-							<tr>
                                                             <td><?php echo $biodata->status_rumah ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
