@@ -6,6 +6,10 @@
         .img-rounded {
             border-radius: 50%!important;
         }
+		.cell-breakWord {
+            word-wrap: break-word;
+            max-width: 1px;
+        }
     </style>
 </head>
     <div class="container-fluid">
@@ -175,7 +179,7 @@
                                                         <tr>
                                                             <th scope="row" class="w-30">Link Google Map Rumah</th>
                                                             <td>:</td>
-                                                            <td class="w-50"><a href="<?php echo $biodata->link_google_map ?? '' ?>" target="_blank" rel="noopener noreferrer"><?php echo $biodata->link_google_map ?? '' ?></a></td>
+                                                            <td class="cell-breakWord w-50"><a href="<?php echo $biodata->link_google_map ?? '' ?>" target="_blank" rel="noopener noreferrer"><?php echo $biodata->link_google_map ?? '' ?></a></td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Status rumah</th>
@@ -188,7 +192,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" style="text-align: center">
+                                                            <td colspan="3"> <!--style="text-align: center"-->
                                                                 <!-- show foto_rumah if exist -->
                                                                 <?php if (isset($biodata->foto_rumah)) : ?>
                                                                 <img src="<?php echo base_url('images/rumah/' .$biodata->foto_rumah) ?>" width="500" height="300">
