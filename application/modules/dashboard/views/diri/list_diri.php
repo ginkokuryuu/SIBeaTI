@@ -6,7 +6,7 @@
         .img-rounded {
             border-radius: 50%!important;
         }
-		.cell-breakWord {
+	.cell-breakWord {
             word-wrap: break-word;
             max-width: 1px;
         }
