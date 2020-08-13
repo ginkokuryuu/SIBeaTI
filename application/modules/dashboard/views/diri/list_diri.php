@@ -218,7 +218,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->kegiatan_selain_kuliah ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->kegiatan_selain_kuliah ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Organisasi yang (pernah) diikuti</th>
@@ -226,7 +226,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->organisasi ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->organisasi ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Kehidupan sehari-hari saat ini</th>
@@ -234,7 +234,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->kehidupan_sehari_hari ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->kehidupan_sehari_hari ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Keluarga Anda</th>
@@ -242,7 +242,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->cerita_keluarga ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->cerita_keluarga ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Dampak wabah COVID-19 yang dialami</th>
@@ -250,7 +250,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->dampak_covid ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->dampak_covid ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Apa yang akan dicapai dalam 5 tahun ke depan</th>
@@ -258,7 +258,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->capaian_ke_depan ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->capaian_ke_depan ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Apa yang akan dilakukan untuk ITS ketika sudah menjadi alumni</th>
@@ -266,7 +266,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->ketika_menjadi_alumni ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->ketika_menjadi_alumni ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Bersedia terlibat dalam kegiatan alumni teknik informatika ITS</th>
