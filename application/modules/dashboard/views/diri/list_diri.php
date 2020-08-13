@@ -176,19 +176,23 @@
                                             <div class="col-12">
                                                 <table class="table table-borderless">
                                                     <tbody>
-                                                        <tr>
+                                                        <tr class="d-flex">
                                                             <th scope="row" class="w-30">Link Google Map Rumah</th>
-                                                            <td>:</td>
+                                                            <td class="pl-2">:</td>
+							</tr>
+							<tr>
                                                             <td class="cell-breakWord w-50"><a href="<?php echo $biodata->link_google_map ?? '' ?>" target="_blank" rel="noopener noreferrer"><?php echo $biodata->link_google_map ?? '' ?></a></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="d-flex">
                                                             <th scope="row">Status rumah</th>
-                                                            <td>:</td>
+                                                            <td class="pl-2">:</td>
+							</tr>
+							<tr>
                                                             <td><?php echo $biodata->status_rumah ?? '' ?></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="d-flex">
                                                             <th scope="row">Foto rumah</th>
-                                                            <td>:</td>
+                                                            <td class="pl-2">:</td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
