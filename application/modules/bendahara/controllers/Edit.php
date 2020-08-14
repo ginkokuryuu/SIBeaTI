@@ -32,7 +32,28 @@ class Edit extends CI_Controller {
 		$this->load->model('transaksi');
 
 		$keys = array('Tanggal', 'Deskripsi', 'Debit', 'Kredit', 'Saldo', 'Periode', 'Jenis Transaksi', 'Akun', 'Kategori', 'Alias Donatur');
-		$datas = $this->transaksi->getAll();
+
+		$postData = $this->input->post(null, TRUE);
+
+		if(isset($postData['search'])){
+			$searchData = array(
+				'deskripsi_s' => '%' . $postData['deskripsi_s'] . '%',
+				'debit_s' => $postData['debit_s'] == '' ? '%%' : $postData['debit_s'],
+				'kredit_s' => $postData['kredit_s'] == '' ? '%%' : $postData['kredit_s'],
+				'saldo_s' => $postData['saldo_s'] == '' ? '%%' : $postData['saldo_s'],
+				'periode_s' => '%' . $postData['periode_s'] . '%',
+				'tanggal_s' => '%' . $postData['tanggal_s'] . '%',
+				'id_jenis_s' => '%' . $postData['id_jenis_s'] . '%',
+				'id_kategori_s' =>'%' . $postData['id_kategori_s'] . '%',
+				'id_akun_s' => '%' . $postData['id_akun_s'] . '%',
+				'donatur_s' => '%' . $postData['donatur_s'] . '%'
+			);
+
+			$datas = $this->transaksi->search($searchData);
+		}
+		else{
+			$datas = $this->transaksi->getAll();
+		}
 
 		$akuns = $this->transaksi->getAkun();
 		$kategoris = $this->transaksi->getKategori();
