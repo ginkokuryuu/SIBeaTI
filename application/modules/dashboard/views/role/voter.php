@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <input class="btn btn-primary btn-sm float-right" type="button" name="save_vote" value="Submit" data-toggle="modal" data-target="#submitVoteModal" <?php if (isset($beasiswa)) { echo $beasiswa->kuota_vote == count($limit) ? 'disabled': 'btn-primary';} else {echo 'disabled';} ?>/>
+                <input class="btn btn-primary btn-sm float-right" type="button" name="save_vote" value="Submit" data-toggle="modal" data-target="#submitVoteModal" <?php if (isset($beasiswa)) { echo $beasiswa->kuota_vote <= count($limit) ? 'disabled': 'btn-primary';} else {echo 'disabled';} ?>/>
             </div>
         </div>
     </form>
