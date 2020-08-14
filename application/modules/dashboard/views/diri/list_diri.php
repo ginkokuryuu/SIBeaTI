@@ -6,6 +6,10 @@
         .img-rounded {
             border-radius: 50%!important;
         }
+	.cell-breakWord {
+            word-wrap: break-word;
+            max-width: 1px;
+        }
     </style>
 </head>
     <div class="container-fluid">
@@ -172,23 +176,25 @@
                                             <div class="col-12">
                                                 <table class="table table-borderless">
                                                     <tbody>
-                                                        <tr>
+                                                        <tr class="d-flex">
                                                             <th scope="row" class="w-30">Link Google Map Rumah</th>
-                                                            <td>:</td>
-                                                            <td class="w-50"><a href="<?php echo $biodata->link_google_map ?? '' ?>" target="_blank" rel="noopener noreferrer"><?php echo $biodata->link_google_map ?? '' ?></a></td>
+                                                            <td class="pl-2">:</td>
+							</tr>
+							<tr>
+                                                            <td class="cell-breakWord w-50"><a href="<?php echo $biodata->link_google_map ?? '' ?>" target="_blank" rel="noopener noreferrer"><?php echo $biodata->link_google_map ?? '' ?></a></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="d-flex">
                                                             <th scope="row">Status rumah</th>
-                                                            <td>:</td>
+                                                            <td class="pl-2">:</td>
                                                             <td><?php echo $biodata->status_rumah ?? '' ?></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr class="d-flex">
                                                             <th scope="row">Foto rumah</th>
-                                                            <td>:</td>
+                                                            <td class="pl-2">:</td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" style="text-align: center">
+                                                            <td colspan="3"> <!--style="text-align: center"-->
                                                                 <!-- show foto_rumah if exist -->
                                                                 <?php if (isset($biodata->foto_rumah)) : ?>
                                                                 <img src="<?php echo base_url('images/rumah/' .$biodata->foto_rumah) ?>" width="500" height="300">
@@ -212,7 +218,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->kegiatan_selain_kuliah ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->kegiatan_selain_kuliah ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Organisasi yang (pernah) diikuti</th>
@@ -220,7 +226,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->organisasi ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->organisasi ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Kehidupan sehari-hari saat ini</th>
@@ -228,7 +234,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->kehidupan_sehari_hari ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->kehidupan_sehari_hari ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Keluarga Anda</th>
@@ -236,7 +242,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->cerita_keluarga ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->cerita_keluarga ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Dampak wabah COVID-19 yang dialami</th>
@@ -244,7 +250,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->dampak_covid ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->dampak_covid ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Apa yang akan dicapai dalam 5 tahun ke depan</th>
@@ -252,7 +258,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->capaian_ke_depan ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->capaian_ke_depan ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Apa yang akan dilakukan untuk ITS ketika sudah menjadi alumni</th>
@@ -260,7 +266,7 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="3" class="text-justify"><?php echo $biodata->ketika_menjadi_alumni ?? '' ?></td>
+                                                            <td colspan="3" class="cell-breakWord text-justify"><?php echo $biodata->ketika_menjadi_alumni ?? '' ?></td>
                                                         </tr>
                                                         <tr class="d-flex">
                                                             <th scope="row">Bersedia terlibat dalam kegiatan alumni teknik informatika ITS</th>

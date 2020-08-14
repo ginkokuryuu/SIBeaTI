@@ -30,6 +30,35 @@ class Transaksi extends CI_Model
         return $query->result();
     }
 
+    public function search($data){
+        $sql = "SELECT transaksi.* , jenis_transaksi.nama as jenis_transaksi, kategori.nama as kategori, akun.nama as akun
+                FROM transaksi
+                    inner join jenis_transaksi 
+                        on jenis_transaksi.id = id_jenistransaksi
+                    inner join kategori 
+                        on kategori.id = id_kategori
+                    inner join akun 
+                        on akun.id = id_akun
+                    WHERE deskripsi LIKE ? AND debit LIKE ? 
+                    AND kredit LIKE ? AND saldo LIKE ? 
+                    AND periode LIKE ? AND tanggal LIKE ? 
+                    AND id_jenistransaksi LIKE ? AND id_kategori LIKE ? 
+                    AND id_akun LIKE ? AND inisial_donatur LIKE ?;";
+
+        return $this->db->query($sql,[
+            $data['deskripsi_s'],
+            $data['debit_s'],
+            $data['kredit_s'],
+            $data['saldo_s'],
+            $data['periode_s'],
+            $data['tanggal_s'],
+            $data['id_jenis_s'],
+            $data['id_kategori_s'],
+            $data['id_akun_s'],
+            $data['donatur_s']
+            ])->result();
+    }
+
     public function saveFromTemp($data){
         $this->deskripsi = $data->deskripsi;
         $this->debit = $data->debit;

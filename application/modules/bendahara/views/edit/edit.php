@@ -16,15 +16,69 @@ function changeNegNumber($number){
 }
 ?>
 
-<div style="margin-left:5%; margin-right:5%;">
+<div style="margin-left:5%; margin-right:5%; overflow: auto;">
     <table class="table table-light">
     <thead class="thead-dark">
         <tr>
-        <th scope="col">#</th>
-        <?php foreach($keys as $key): ?>
-            <th scope="col"><?php echo $key; ?></th>
-        <?php endforeach; ?>
-        <th scope='col'>Action</th>
+            <th scope="col">#</th>
+            <?php foreach($keys as $key): ?>
+                <th scope="col"><?php echo $key; ?></th>
+            <?php endforeach; ?>
+            <th scope='col'>Action</th>
+        </tr>
+        <tr>
+            <th scope="col">Search</th>
+            <form action="<?= site_url('bendahara/edit/') ?>" method="POST" id='search-form'>
+                <th scope="col">
+                    <input type="text" class="form-control" name="tanggal_s" value=""></input>
+                </th>
+                <th scope="col">
+                    <input type="text" class="form-control" name="deskripsi_s" value=""></input>
+                </th>
+                <th scope="col">
+                    <input type="text" class="form-control" name="debit_s" value=""></input>
+                </th>
+                <th scope="col">
+                    <input type="text" class="form-control" name="kredit_s" value=""></input>
+                </th>
+                <th scope="col">
+                    <input type="text" class="form-control" name="saldo_s" value=""></input>
+                </th>
+                <th scope="col">
+                    <input type="text" class="form-control" name="periode_s" value=""></input>
+                </th>
+                <th scope="col">
+                    <select class="form-control" name="id_jenis_s">
+                        <option value="">Semua</option>
+                        <?php foreach($jenis_trans as $jenis_tran): ?>
+                            <option value="<?php echo $jenis_tran->id ?>"><?php echo $jenis_tran->nama ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </th>
+                <th scope="col">
+                    <select class="form-control" name="id_akun_s">
+                        <option value="">Semua</option>
+                        <?php foreach($akuns as $akun): ?>
+                            <option value="<?php echo $akun->id ?>"><?php echo $akun->nama ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </th>
+                <th scope="col">
+                    <select class="form-control" name="id_kategori_s">
+                        <option value="">Semua</option>
+                        <?php foreach($kategoris as $kategori): ?>
+                            <option value="<?php echo $kategori->id ?>"><?php echo $kategori->nama ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </th>
+                <th scope="col">
+                    <input type="text" class="form-control" name="donatur_s" value=""></input>
+                </th>
+                <th scope="col">
+                    <input type="submit" class="form-control btn btn-primary" name="search" value="Search"></input>
+                </th>
+                
+            </form>
         </tr>
     </thead>
     <tbody>

@@ -16,7 +16,7 @@ function changeNegNumber($number){
 }
 ?>
 
-<div style="margin-left:5%; margin-right:5%;">
+<div style="margin-left:5%; margin-right:5%; overflow: auto;">
     <div class="alert alert-primary" role="alert">
         Ingat, ini tidak akan disimpan ke database sebelum di simpan!
     </div>
