@@ -33,7 +33,7 @@ class Calon extends CI_Controller
 
             $tambah = count($limit) + sizeof($pendaftar_id);
 
-            if(sizeof($pendaftar_id) <= $kuota_vote || $tambah <= $kuota_vote)
+            if(sizeof($pendaftar_id) <= $kuota_vote && $tambah <= $kuota_vote)
             {
                 for($i=0; $i < sizeof($pendaftar_id); $i++)
                 {

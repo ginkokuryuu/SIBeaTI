@@ -29,7 +29,7 @@ class Penerima extends CI_Controller
 
             $tambah = count($limit) + sizeof($calon_id);
 
-            if(sizeof($calon_id) <= $kuota_beasiswa || $tambah <= $kuota_beasiswa)
+            if(sizeof($calon_id) <= $kuota_beasiswa && $tambah <= $kuota_beasiswa)
             {
                 for($i=0; $i < sizeof($calon_id); $i++)
                 {
