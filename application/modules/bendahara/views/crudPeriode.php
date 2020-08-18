@@ -12,16 +12,17 @@
         </thead>
         <tbody>
             <?php $count = 0;
+            $formId = "form" . $count;
             foreach($allPeriode as $periode): ?>
             <tr>
                 <th scope="row"><?php echo $count + 1; ?></th>
                 <td class='inisial'><?php echo $periode->id; ?></td>
-                <form action='<?= site_url("bendahara/crud_periode/save/$periode->id") ?>' method="POST" id='edit-form'>
+                <form action='<?= site_url("bendahara/crud_periode/save/$periode->id") ?>' method="POST" id='<?php echo $formId; ?>'>
                     <td>
                         <input type="text" name="nama" id="nama" placeholder="Nama Periode" value='<?php echo $periode->nama; ?>'></input>
                     </td>
                     <td>
-                        <input type="text" name="deskripsi" id="deskripsi" placeholder="Deskripsi" value='<?php echo $periode->deskripsi; ?>'></input>
+                        <textarea rows="4" cols="50" name="deskripsi" id="deskripsi" form="<?php echo $formId; ?>"><?php echo $periode->deskripsi; ?></textarea>
                     </td>
                     <td>
                         <input type="text" name="status" id="status" placeholder="Status" value='<?php echo $periode->status; ?>'></input>
@@ -32,6 +33,7 @@
                 </form>
             </tr>
             <?php $count++;
+            $formId = "form" . $count;
             endforeach;?>
         </tbody>
     </table>
