@@ -51,7 +51,7 @@ class Penerima extends CI_Controller
             $pdf->Cell(2,7,'', 'LTB');
             $pdf->Cell(78,7,$data->nama_lengkap,'TRB',1);
         }
-        $filename = 'Penerima ' . ucwords($beasiswa->nama) .' Tahun '.$beasiswa->tahun.' Periode '.$beasiswa->periode;
-        $pdf->Output('I', $filename);
+        $filename = 'Penerima ' . ucwords($beasiswa->nama) .' Tahun '.$beasiswa->tahun.' Periode '.$beasiswa->periode.'.pdf';
+        $pdf->Output('D', $filename);
 	}
 }
