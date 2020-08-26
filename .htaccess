@@ -7,7 +7,8 @@ RewriteEngine On
 # If your site begins from the root e.g. example.local/ then
 # let it as it is
 # RewriteBase /sibeati/
-RewriteBase /informatika/beasiswa-test/
+# RewriteBase /informatika/beasiswa-test/
+RewriteBase /informatika/beasiswa/
 
 # Protect application and system files from being viewed when the index.php is missing
 RewriteCond $1 ^(application|system|private|logs)

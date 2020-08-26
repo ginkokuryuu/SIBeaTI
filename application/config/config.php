@@ -25,8 +25,8 @@ date_default_timezone_set("Asia/Jakarta");
 |
 */
 // $config['base_url'] = 'http://localhost:7777/sibeati/';
-$config['base_url'] = 'https://www.its.ac.id/informatika/beasiswa-test/';
-
+// $config['base_url'] = 'https://www.its.ac.id/informatika/beasiswa-test/';
+$config['base_url'] = 'https://www.its.ac.id/informatika/beasiswa/';
 /*
 |--------------------------------------------------------------------------
 | Index File
